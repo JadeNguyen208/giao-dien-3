@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chi Tiết Công Việc - Quản Lý Chùa</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-dark: #1a4a2e;
+    --green-main: #2d6a4f;
+    --green-mid: #3a8a62;
+    --green-light: #52b788;
+    --green-pale: #e8f5ee;
+    --green-bg: #f0f7f3;
+    --gold: #c9a84c;
+    --gold-light: #f0d080;
+    --gold-pale: #fdf6e3;
+    --red-urgent: #c0392b;
+    --red-bg: #fdf1f0;
+    --orange: #e07b39;
+    --orange-bg: #fff4ec;
+    --blue: #2471a3;
+    --blue-bg: #eaf4fb;
+    --gray-100: #f8f9fa;
+    --gray-200: #e9ecef;
+    --gray-300: #dee2e6;
+    --gray-400: #ced4da;
+    --gray-500: #adb5bd;
+    --gray-600: #6c757d;
+    --gray-700: #495057;
+    --gray-800: #343a40;
+    --white: #ffffff;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+    --radius: 10px;
+    --radius-sm: 6px;
+    --radius-lg: 14px;
+    --topbar-h: 56px;
+    --tb-bg: #fad96a;
+    --tb-border: #f0c840;
+    --tb-logo-text: #7a3a00;
+    --tb-text: #5a2d00;
+    --tb-lunar: #8b4a00;
+    --tb-sep: rgba(90,45,0,0.18);
+    --burgundy: #6b1a1a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    background: var(--green-bg);
+    color: var(--gray-800);
+    font-size: 15px;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+/* ===== TOPBAR ===== */
+.topbar {
+  background: var(--tb-bg);
+  border-bottom: 2.5px solid var(--tb-border);
+  color: var(--tb-text);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  height: var(--topbar-h);
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  box-shadow: 0 2px 10px rgba(200,140,0,0.18);
+  gap: 0;
+}
+.topbar-brand {
+  display: flex; align-items: center; gap: 10px;
+  padding-right: 18px;
+  border-right: 1.5px solid var(--tb-sep);
+  flex-shrink: 0;
+}
+.logo-icon {
+  width: 32px; height: 32px; border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; box-shadow: 0 1px 4px rgba(90,45,0,0.25);
+  flex-shrink: 0;
+}
+.app-name { font-size: 14px; font-weight: 800; letter-spacing: 0.3px; color: var(--burgundy); white-space: nowrap; }
+
+.topbar-datetime {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 0 18px;
+  border-right: 1.5px solid var(--tb-sep);
+  line-height: 1.25;
+  flex-shrink: 0;
+}
+.topbar-datetime .dt-duong { font-size: 12px; font-weight: 700; color: var(--tb-text); white-space: nowrap; }
+.topbar-datetime .dt-am { font-size: 10.5px; color: var(--tb-lunar); font-weight: 500; white-space: nowrap; }
+
+.topbar-actions {
+  display: flex; align-items: center; gap: 6px;
+  margin-left: auto; flex-shrink: 0;
+}
+.tb-action {
+  padding: 6px 13px; border-radius: 6px; cursor: pointer;
+  font-size: 12px; font-weight: 600; color: var(--tb-text);
+  border: 1.5px solid rgba(90,45,0,0.22);
+  background: rgba(255,255,255,0.3);
+  font-family: inherit; transition: all 0.15s;
+  white-space: nowrap; display: flex; align-items: center; gap: 5px;
+}
+.tb-action:hover { background: rgba(255,255,255,0.5); border-color: rgba(90,45,0,0.4); }
+.tb-action.primary {
+  background: var(--green-main); border-color: var(--green-main);
+  color: white; font-weight: 700;
+}
+.tb-action.primary:hover { background: var(--green-dark); border-color: var(--green-dark); }
+
+.user-block {
+  display: flex; align-items: center; gap: 8px;
+  margin-left: 6px; cursor: pointer;
+}
+.avatar {
+  width: 34px; height: 34px; background: var(--tb-logo-text); color: var(--tb-bg);
+  border-radius: 8px; font-weight: 800; font-size: 13px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; letter-spacing: 0.5px;
+}
+.user-info { display: flex; flex-direction: column; line-height: 1.25; }
+.user-info .user-name { font-size: 12px; font-weight: 700; color: var(--tb-text); white-space: nowrap; }
+.user-info .user-role { font-size: 10px; color: var(--tb-lunar); font-weight: 500; white-space: nowrap; }
+
+/* ===== SUBNAV ===== */
+.subnav {
+  background: var(--green-main);
+  display: flex; align-items: center;
+  padding: 0 20px; gap: 2px;
+  height: 44px;
+  border-bottom: 2px solid var(--gold);
+}
+.subnav-item {
+  padding: 7px 13px; color: rgba(255,255,255,0.75);
+  border-radius: var(--radius-sm);
+  cursor: pointer; font-size: 12.5px; font-weight: 500;
+  display: flex; align-items: center; gap: 5px;
+  transition: all 0.2s; white-space: nowrap;
+}
+.subnav-item:hover { background: rgba(255,255,255,0.1); color: white; }
+.subnav-item.active { background: var(--gold); color: var(--green-dark); font-weight: 700; }
+.subnav-right { margin-left: auto; display: flex; gap: 6px; }
+.subnav-action {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white; padding: 5px 13px;
+  border-radius: 7px; font-size: 12.5px;
+  cursor: pointer; font-family: inherit; font-weight: 500;
+  transition: all 0.2s;
+}
+.subnav-action:hover { background: rgba(255,255,255,0.22); }
+.subnav-action.primary {
+  background: var(--gold); border-color: var(--gold);
+  color: var(--green-dark); font-weight: 700;
+}
+.subnav-action.primary:hover { background: var(--gold-light); }
+
+/* ===== MAIN LAYOUT ===== */
+.main-layout {
+  display: flex;
+  height: calc(100vh - var(--topbar-h) - 44px);
+  overflow: hidden;
+}
+
+/* ===== DETAIL PANEL ===== */
+.detail-panel {
+  flex: 1;
+  overflow-y: auto;
+  padding: 18px 20px 30px;
+  background: var(--green-bg);
+}
+
+/* ===== BAN TRI SỰ HEADER CARD ===== */
+.ban-header-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 18px 22px 16px;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow-sm);
+  border-left: 6px solid var(--green-main);
+}
+.ban-title-row {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 16px;
+}
+.ban-left {}
+.ban-name {
+  font-size: 13px; font-weight: 800; letter-spacing: 0.8px;
+  text-transform: uppercase; color: var(--green-main);
+  margin-bottom: 3px;
+  display: flex; align-items: center; gap: 6px;
+}
+.ban-name::before {
+  content: '';
+  display: inline-block; width: 10px; height: 10px;
+  background: var(--gold); border-radius: 2px;
+}
+.ban-chucvu {
+  font-size: 22px; font-weight: 800; color: var(--green-dark);
+  letter-spacing: -0.4px; line-height: 1.25; margin-bottom: 6px;
+}
+.ban-meta-row {
+  display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+}
+.ban-meta-item {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 13px; font-weight: 600; color: #3a5040;
+}
+.ban-meta-icon {
+  width: 22px; height: 22px; border-radius: 5px;
+  background: var(--green-pale); display: flex; align-items: center;
+  justify-content: center; font-size: 12px; flex-shrink: 0;
+}
+.ban-code {
+  font-size: 12px; color: var(--gray-400); font-weight: 600;
+  border: 1px solid var(--gray-200); border-radius: 6px;
+  padding: 3px 9px;
+}
+
+/* ===== TASK TITLE SECTION ===== */
+.task-title-section {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 16px 22px;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow-sm);
+  border-top: 3px solid var(--gold);
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+}
+.task-title-big {
+  font-size: 26px; font-weight: 800; color: var(--green-dark);
+  letter-spacing: -0.5px; line-height: 1.25;
+}
+.doing-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 14px; border-radius: 20px;
+  background: var(--blue-bg); color: var(--blue);
+  font-size: 13px; font-weight: 700;
+  border: 1px solid rgba(36,113,163,0.2);
+  white-space: nowrap; flex-shrink: 0;
+}
+.doing-clock {
+  font-size: 16px; animation: spin-clock 8s linear infinite;
+}
+@keyframes spin-clock {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ===== INFO CARDS ===== */
+.info-card {
+  background: white; border-radius: var(--radius);
+  padding: 16px 18px; box-shadow: var(--shadow-sm);
+}
+.info-card-label {
+  font-size: 11px; font-weight: 800;
+  color: #2c3e30; text-transform: uppercase;
+  letter-spacing: 0.6px; margin-bottom: 8px;
+  display: flex; align-items: center; gap: 5px;
+}
+.info-card-value { font-size: 14px; font-weight: 600; color: var(--gray-800); line-height: 1.6; }
+
+.detail-content-card {
+  background: white; border-radius: var(--radius);
+  padding: 18px 20px; margin-bottom: 12px;
+  box-shadow: var(--shadow-sm);
+}
+.detail-content-card .info-card-label {
+  font-size: 11px; font-weight: 800; color: #2c3e30;
+  text-transform: uppercase; letter-spacing: 0.6px;
+  margin-bottom: 10px; padding-bottom: 10px;
+  border-bottom: 2px solid var(--green-pale);
+  display: flex; align-items: center; gap: 5px;
+}
+.info-note { font-size: 14px; line-height: 1.9; color: #1a2620; font-weight: 500; }
+.info-note p { margin-bottom: 7px; }
+.info-note p:last-child { margin-bottom: 0; }
+
+.meta-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 12px; margin-bottom: 14px;
+}
+.meta-card {
+  background: white; border-radius: var(--radius);
+  padding: 16px 18px; box-shadow: var(--shadow-sm);
+}
+.meta-card-label {
+  font-size: 11px; font-weight: 800; color: #2c3e30;
+  text-transform: uppercase; letter-spacing: 0.6px;
+  margin-bottom: 10px; padding-bottom: 8px;
+  border-bottom: 2px solid var(--green-pale);
+  display: flex; align-items: center; gap: 5px;
+}
+.meta-inline-row {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 8px;
+}
+.meta-inline-row:last-child { margin-bottom: 0; }
+.meta-sub-label {
+  font-size: 11px; font-weight: 700; color: var(--gray-500);
+  text-transform: uppercase; letter-spacing: 0.4px;
+  min-width: 90px;
+}
+.name-tag {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: var(--green-pale); color: var(--green-dark);
+  padding: 4px 12px; border-radius: 8px;
+  font-size: 13px; font-weight: 700;
+  border: 1px solid rgba(45,106,79,0.2);
+}
+.time-val {
+  font-size: 14px; font-weight: 800;
+  color: var(--green-dark);
+  background: var(--green-pale);
+  border: 1px solid rgba(45,106,79,0.2);
+  padding: 4px 12px; border-radius: 8px;
+}
+.ban-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.ban-pill {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 4px 12px; border-radius: 8px;
+  font-size: 13px; font-weight: 700;
+  border: 1px solid rgba(45,106,79,0.2);
+  background: var(--green-pale); color: var(--green-dark);
+}
+.ban-pill.blue { background: var(--blue-bg); color: var(--blue); border-color: rgba(36,113,163,0.2); }
+.ban-pill.purple { background: #f5eef8; color: #8e44ad; border-color: rgba(142,68,173,0.2); }
+.ban-pill.orange { background: var(--orange-bg); color: var(--orange); border-color: rgba(224,123,57,0.2); }
+.people-row {
+  display: flex; align-items: center; gap: 8px;
+  padding-top: 8px; border-top: 1px solid var(--gray-200);
+}
+.people-count { font-size: 26px; font-weight: 800; color: var(--green-dark); }
+.people-label { font-size: 13px; font-weight: 700; color: #1a2620; }
+
+/* ===== TIẾN TRÌNH ===== */
+.progress-section {
+  background: white;
+  border-radius: var(--radius);
+  margin-bottom: 14px;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+.progress-section-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 18px 12px;
+  border-bottom: 2px solid var(--green-pale);
+}
+.section-title {
+  font-size: 15px; font-weight: 800; color: var(--green-dark);
+  display: flex; align-items: center; gap: 8px;
+}
+.progress-pct {
+  font-size: 14px; font-weight: 700; color: var(--green-main);
+}
+.progress-bar-wrap {
+  margin: 0 18px 0;
+  height: 7px; background: var(--gray-200);
+  border-radius: 4px; overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%; background: linear-gradient(90deg, var(--green-main), var(--green-light));
+  border-radius: 4px;
+}
+.btn-them-cv {
+  display: flex; align-items: center; gap: 6px;
+  padding: 8px 16px; border-radius: 8px;
+  background: var(--green-main); color: white;
+  border: none; font-family: inherit;
+  font-size: 13px; font-weight: 700;
+  cursor: pointer; transition: all 0.2s;
+  flex-shrink: 0;
+}
+.btn-them-cv:hover { background: var(--green-dark); }
+
+.timeline-scroll-box {
+  height: 320px;
+  overflow-y: auto;
+  padding: 14px 18px 14px;
+  position: relative;
+}
+.timeline {
+  display: flex; flex-direction: column; gap: 0;
+  position: relative; padding-left: 24px;
+}
+.timeline::before {
+  content: '';
+  position: absolute; left: 7px; top: 6px;
+  width: 2px; height: calc(100% - 12px);
+  background: var(--gray-200);
+}
+.tl-item {
+  position: relative; padding: 0 0 18px 14px;
+}
+.tl-item:last-child { padding-bottom: 0; }
+.tl-dot {
+  position: absolute; left: -17px; top: 4px;
+  width: 14px; height: 14px; border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 0 0 2px var(--gray-300);
+  background: var(--gray-300); z-index: 1;
+}
+.tl-dot.done { background: #27ae60; box-shadow: 0 0 0 2px #27ae60; }
+.tl-dot.active { background: var(--green-main); box-shadow: 0 0 0 2px var(--green-main); animation: pulse-dot 1.5s infinite; }
+.tl-dot.pending { background: var(--gold); box-shadow: 0 0 0 2px var(--gold); }
+@keyframes pulse-dot {
+  0%,100% { box-shadow: 0 0 0 2px var(--green-main); }
+  50% { box-shadow: 0 0 0 5px rgba(45,106,79,0.25); }
+}
+.tl-title { font-size: 14px; font-weight: 700; color: #1a2620; margin-bottom: 3px; }
+.tl-meta { font-size: 12px; color: #3d4f44; font-weight: 600; }
+.tl-note {
+  font-size: 13px; color: #2d3d32;
+  margin-top: 6px; padding: 7px 10px;
+  background: var(--gray-100); border-radius: 6px;
+  border-left: 3px solid var(--green-light); line-height: 1.6;
+}
+.tl-note-editable {
+  font-size: 13px; color: #2d3d32;
+  margin-top: 6px; padding: 7px 10px;
+  background: #fffef5; border-radius: 6px;
+  border: 1.5px solid var(--gold);
+  border-left: 3px solid var(--gold);
+  line-height: 1.6; outline: none;
+  font-family: inherit; width: 100%; resize: none;
+  min-height: 60px;
+}
+.tl-note-editable:focus { box-shadow: 0 0 0 2px rgba(201,168,76,0.3); }
+.tl-item.new-item { animation: fadeInDown 0.4s ease; }
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== HÌNH ẢNH ===== */
+.media-card {
+  background: white; border-radius: var(--radius);
+  padding: 18px 20px; margin-bottom: 14px;
+  box-shadow: var(--shadow-sm);
+}
+.section-header-row {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 14px; padding-bottom: 10px;
+  border-bottom: 2px solid var(--green-pale);
+}
+.section-hdr { font-size: 15px; font-weight: 800; color: var(--green-dark); display: flex; align-items: center; gap: 7px; }
+.add-item-btn {
+  padding: 6px 14px; border-radius: 8px;
+  background: var(--green-pale); border: 1px solid var(--green-light);
+  color: var(--green-dark); font-size: 13px; font-weight: 700;
+  cursor: pointer; font-family: inherit; transition: all 0.2s;
+  display: flex; align-items: center; gap: 5px;
+}
+.add-item-btn:hover { background: var(--green-main); color: white; }
+
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.media-item {
+  border-radius: var(--radius-sm); overflow: hidden;
+  position: relative; aspect-ratio: 1;
+  background: var(--gray-200); cursor: pointer;
+  border: 2px solid var(--gray-300);
+}
+.media-item:hover { border-color: var(--green-light); }
+.media-item svg, .media-item img { width: 100%; height: 100%; object-fit: cover; }
+.media-overlay {
+  position: absolute; inset: 0;
+  background: rgba(26,74,46,0.72);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 6px; opacity: 0; transition: opacity 0.25s;
+}
+.media-item:hover .media-overlay { opacity: 1; }
+.media-btn {
+  background: rgba(255,255,255,0.92); color: var(--green-dark);
+  border: none; border-radius: 6px;
+  padding: 5px 12px; font-size: 12px; font-weight: 700;
+  cursor: pointer; font-family: inherit;
+  display: flex; align-items: center; gap: 4px;
+  width: 85px; justify-content: center;
+}
+.media-btn:hover { background: white; }
+
+.media-item-overflow {
+  border-radius: var(--radius-sm); overflow: hidden;
+  position: relative; aspect-ratio: 1;
+  cursor: pointer; border: 2px solid var(--gray-300);
+  background: #1a2e22;
+}
+.media-item-overflow:hover { border-color: var(--gold); }
+.overflow-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, #2d6a4f, #1a4a2e);
+  opacity: 0.85;
+}
+.overflow-label {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 4px;
+  color: white;
+}
+.overflow-count {
+  font-size: 26px; font-weight: 800; line-height: 1;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+.overflow-text { font-size: 11px; font-weight: 600; opacity: 0.85; }
+
+/* Image lightbox */
+.lightbox-overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(10,24,16,0.92);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity 0.25s;
+}
+.lightbox-overlay.active { opacity: 1; pointer-events: all; }
+.lightbox-inner {
+  width: 92vw; max-width: 1100px;
+  height: 88vh; max-height: 700px;
+  background: #0f1f16; border-radius: 16px;
+  display: flex; flex-direction: column;
+  overflow: hidden; box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+}
+.lightbox-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 20px;
+  background: var(--green-dark); border-bottom: 2px solid var(--gold);
+}
+.lightbox-title { font-size: 15px; font-weight: 800; color: white; }
+.lightbox-close {
+  background: rgba(255,255,255,0.12); border: none; color: white;
+  width: 34px; height: 34px; border-radius: 8px;
+  font-size: 18px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+}
+.lightbox-close:hover { background: rgba(255,255,255,0.25); }
+.lightbox-grid {
+  flex: 1; overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px; padding: 16px;
+}
+.lb-item {
+  border-radius: 8px; overflow: hidden;
+  aspect-ratio: 1; cursor: pointer;
+  border: 2px solid rgba(255,255,255,0.08);
+  transition: border-color 0.2s;
+}
+.lb-item:hover { border-color: var(--gold); }
+.lb-item svg { width: 100%; height: 100%; }
+
+/* ===== TÀI LIỆU ===== */
+.doc-list { display: flex; flex-direction: column; gap: 8px; }
+.doc-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 11px 14px; background: var(--gray-100);
+  border-radius: var(--radius-sm); border: 1px solid var(--gray-200);
+  transition: all 0.2s;
+}
+.doc-item:hover { border-color: var(--green-light); background: var(--green-pale); }
+.doc-icon { font-size: 24px; flex-shrink: 0; }
+.doc-info { flex: 1; min-width: 0; }
+.doc-name { font-size: 13px; font-weight: 700; color: var(--gray-800); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.doc-meta { font-size: 11.5px; color: #3d4a41; margin-top: 2px; font-weight: 500; }
+.doc-actions { display: flex; gap: 6px; flex-shrink: 0; }
+.doc-btn {
+  padding: 5px 11px; border-radius: 6px;
+  border: 1px solid var(--gray-300); background: white;
+  font-size: 12px; font-weight: 600; cursor: pointer;
+  font-family: inherit; color: var(--gray-600);
+  display: flex; align-items: center; gap: 3px; transition: all 0.15s;
+}
+.doc-btn:hover { border-color: var(--green-light); color: var(--green-dark); background: var(--green-pale); }
+.doc-btn.primary { background: var(--green-main); color: white; border-color: var(--green-main); }
+.doc-btn.primary:hover { background: var(--green-dark); }
+.doc-limit-note {
+  display: flex; align-items: center; gap: 6px;
+  margin-top: 10px; padding: 8px 12px;
+  background: #fff8e6; border: 1px solid var(--gold);
+  border-radius: 8px; font-size: 13px; font-weight: 600; color: #7a5c0a;
+}
+.upload-zone {
+  border: 2px dashed #7aab8e; border-radius: var(--radius);
+  padding: 22px; text-align: center; cursor: pointer;
+  transition: all 0.25s; background: var(--gray-100); margin-top: 10px;
+}
+.upload-zone:hover { border-color: var(--green-main); background: var(--green-pale); }
+.upload-zone .upload-icon { font-size: 30px; margin-bottom: 6px; }
+.upload-zone .upload-text { font-size: 14px; font-weight: 700; color: #1e3028; }
+.upload-zone .upload-sub { font-size: 12px; color: #3d4f44; margin-top: 4px; font-weight: 500; }
+
+/* ===== XIN Ý KIẾN ===== */
+.approval-panel {
+  background: white; border-radius: var(--radius);
+  padding: 18px 20px; margin-bottom: 14px;
+  box-shadow: var(--shadow-sm);
+  border-top: 4px solid var(--gold);
+}
+.approval-buttons {
+  display: flex; gap: 12px; margin-bottom: 16px;
+}
+.approval-btn {
+  flex: 1; display: flex; align-items: center; justify-content: center;
+  gap: 8px; padding: 14px 20px; border-radius: 10px;
+  border: 2px solid; font-family: inherit;
+  font-size: 15px; font-weight: 800; cursor: pointer;
+  transition: all 0.2s; line-height: 1.3;
+}
+.approval-btn.sp {
+  background: linear-gradient(135deg, #6b4f00, var(--gold));
+  border-color: var(--gold); color: white;
+}
+.approval-btn.sp:hover { background: linear-gradient(135deg, #7d5e00, #d4b050); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(201,168,76,0.4); }
+.approval-btn.bld {
+  background: linear-gradient(135deg, #1a4a2e, var(--green-main));
+  border-color: var(--green-main); color: white;
+}
+.approval-btn.bld:hover { background: linear-gradient(135deg, #122e1e, #236140); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(45,106,79,0.4); }
+
+.approval-history { display: flex; flex-direction: column; gap: 10px; }
+.approval-history-item {
+  border: 1px solid var(--gray-200); border-radius: 10px;
+  overflow: hidden;
+}
+.ahi-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 14px;
+  cursor: pointer; transition: background 0.2s;
+  background: var(--gray-100);
+}
+.ahi-header:hover { background: var(--green-pale); }
+.ahi-left { display: flex; align-items: center; gap: 8px; }
+.ahi-tag {
+  font-size: 11px; font-weight: 800; padding: 3px 9px; border-radius: 6px;
+}
+.ahi-tag.sp { background: var(--gold-pale); color: #7a5c0a; border: 1px solid rgba(201,168,76,0.4); }
+.ahi-tag.bld { background: var(--green-pale); color: var(--green-dark); border: 1px solid rgba(45,106,79,0.3); }
+.ahi-title { font-size: 14px; font-weight: 700; color: var(--gray-800); }
+.ahi-date { font-size: 11.5px; color: var(--gray-500); font-weight: 600; }
+.ahi-expand { font-size: 12px; color: var(--gray-400); transition: transform 0.2s; }
+.ahi-expand.open { transform: rotate(180deg); }
+.ahi-body {
+  padding: 12px 14px 14px;
+  background: white; border-top: 1px solid var(--gray-200);
+  font-size: 14px; line-height: 1.8; color: #1a2620;
+  display: none;
+}
+.ahi-body.open { display: block; }
+
+.ahi-response {
+  margin-top: 12px; padding: 12px 14px;
+  background: var(--gold-pale);
+  border: 1px solid rgba(201,168,76,0.4);
+  border-left: 4px solid var(--gold);
+  border-radius: 8px;
+}
+.ahi-response-label {
+  font-size: 11px; font-weight: 800; color: #7a5c0a;
+  text-transform: uppercase; letter-spacing: 0.5px;
+  margin-bottom: 6px; display: flex; align-items: center; gap: 5px;
+}
+.ahi-response-content {
+  font-size: 13.5px; line-height: 1.8; color: #4a3200; font-weight: 500;
+}
+
+/* ===== MODAL THÊM CV ===== */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 900;
+  background: rgba(10,24,16,0.6);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity 0.25s;
+}
+.modal-overlay.active { opacity: 1; pointer-events: all; }
+.modal-box {
+  width: 92vw; max-width: 640px;
+  background: var(--tb-bg);
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+  overflow: hidden;
+  transform: translateY(16px); transition: transform 0.25s;
+  border: 2px solid var(--tb-border);
+}
+.modal-overlay.active .modal-box { transform: translateY(0); }
+.modal-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 20px;
+  background: var(--green-dark); color: white;
+  border-bottom: 3px solid var(--gold);
+}
+.modal-header h3 { font-size: 16px; font-weight: 800; display: flex; align-items: center; gap: 8px; }
+.modal-close {
+  background: rgba(255,255,255,0.12); border: none; color: white;
+  width: 34px; height: 34px; border-radius: 8px;
+  font-size: 18px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+.modal-close:hover { background: rgba(255,255,255,0.22); }
+.modal-body { padding: 20px; background: var(--tb-bg); }
+.modal-label {
+  font-size: 12px; font-weight: 800; color: var(--tb-text);
+  text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 8px;
+}
+.checklist-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 20px; }
+.check-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 14px; border-radius: 8px;
+  border: 2px solid rgba(90,45,0,0.2); cursor: pointer;
+  transition: all 0.2s; background: rgba(255,255,255,0.55);
+}
+.check-item:hover { border-color: var(--green-main); background: rgba(255,255,255,0.8); }
+.check-item.selected { border-color: var(--green-main); background: rgba(255,255,255,0.85); }
+.check-item input[type="checkbox"] {
+  width: 20px; height: 20px; cursor: pointer;
+  accent-color: var(--green-main); flex-shrink: 0;
+}
+.check-item-label { font-size: 14px; font-weight: 600; color: #1a2620; }
+
+.modal-rte-wrap {
+  background: white; border-radius: 8px;
+  border: 2px solid rgba(90,45,0,0.2);
+  overflow: hidden; margin-bottom: 4px;
+}
+.modal-rte-toolbar {
+  display: flex; align-items: center; gap: 3px; flex-wrap: wrap;
+  padding: 7px 10px;
+  background: rgba(90,45,0,0.06);
+  border-bottom: 1px solid rgba(90,45,0,0.12);
+}
+.modal-rte-btn {
+  padding: 4px 9px; border-radius: 5px;
+  border: 1px solid rgba(90,45,0,0.2); background: white;
+  font-size: 12px; font-weight: 700; cursor: pointer;
+  color: var(--tb-text); transition: all 0.15s;
+  display: flex; align-items: center; justify-content: center;
+  min-width: 30px; height: 28px;
+  font-family: inherit;
+}
+.modal-rte-btn:hover { background: var(--green-pale); border-color: var(--green-light); color: var(--green-dark); }
+.modal-rte-sep { width: 1px; height: 22px; background: rgba(90,45,0,0.15); margin: 0 3px; }
+.modal-rte-select {
+  padding: 3px 7px; border-radius: 5px;
+  border: 1px solid rgba(90,45,0,0.2); background: white;
+  font-size: 12px; font-family: inherit; cursor: pointer;
+  color: var(--tb-text); height: 28px;
+}
+.modal-rte-content {
+  min-height: 100px; max-height: 180px;
+  overflow-y: auto;
+  padding: 10px 14px;
+  font-size: 14px; line-height: 1.8;
+  color: #1a2620; outline: none;
+  font-family: inherit;
+}
+.modal-rte-content:focus { background: #fffef8; }
+.modal-rte-content[data-placeholder]:empty::before {
+  content: attr(data-placeholder);
+  color: #bbb; pointer-events: none;
+}
+
+.modal-footer {
+  display: flex; justify-content: flex-end; gap: 8px;
+  padding: 14px 20px;
+  background: rgba(250,217,106,0.5);
+  border-top: 1px solid rgba(90,45,0,0.15);
+}
+.modal-btn {
+  padding: 10px 22px; border-radius: 8px;
+  font-family: inherit; font-size: 14px; font-weight: 700;
+  cursor: pointer; border: 2px solid; transition: all 0.2s;
+}
+.modal-btn.cancel { background: rgba(255,255,255,0.7); color: var(--tb-text); border-color: rgba(90,45,0,0.25); }
+.modal-btn.cancel:hover { background: rgba(255,255,255,0.9); }
+.modal-btn.save { background: var(--green-main); color: white; border-color: var(--green-main); }
+.modal-btn.save:hover { background: var(--green-dark); }
+
+/* ===== MODAL XIN Ý KIẾN ===== */
+.approval-modal-box {
+  width: 92vw; max-width: 680px;
+  background: white; border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+  overflow: hidden;
+  transform: translateY(16px); transition: transform 0.25s;
+}
+.modal-overlay.active .approval-modal-box { transform: translateY(0); }
+.approval-modal-header {
+  padding: 16px 20px;
+  border-bottom: 2px solid;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.approval-modal-header.sp { background: linear-gradient(90deg, #6b4f00, var(--gold)); border-color: #8a6d0a; }
+.approval-modal-header.bld { background: linear-gradient(90deg, var(--green-dark), var(--green-main)); border-color: var(--green-dark); }
+.approval-modal-header h3 { font-size: 16px; font-weight: 800; color: white; display: flex; align-items: center; gap: 8px; }
+
+.rte-toolbar {
+  display: flex; align-items: center; gap: 4px; flex-wrap: wrap;
+  padding: 8px 14px;
+  background: #f5f7f6; border-bottom: 1px solid var(--gray-200);
+}
+.rte-btn {
+  padding: 5px 10px; border-radius: 5px;
+  border: 1px solid var(--gray-300); background: white;
+  font-size: 13px; font-weight: 700; cursor: pointer;
+  color: var(--gray-700); transition: all 0.15s;
+  display: flex; align-items: center; justify-content: center;
+  min-width: 32px; height: 30px;
+}
+.rte-btn:hover { background: var(--green-pale); border-color: var(--green-light); color: var(--green-dark); }
+.rte-btn.active { background: var(--green-main); color: white; border-color: var(--green-main); }
+.rte-sep { width: 1px; height: 24px; background: var(--gray-300); margin: 0 4px; }
+.rte-select {
+  padding: 4px 8px; border-radius: 5px;
+  border: 1px solid var(--gray-300); background: white;
+  font-size: 13px; font-family: inherit; cursor: pointer;
+  color: var(--gray-700); height: 30px;
+}
+.rte-content {
+  min-height: 160px; max-height: 280px;
+  overflow-y: auto;
+  padding: 14px 16px;
+  font-size: 15px; line-height: 1.9;
+  color: #1a2620; outline: none;
+  border-bottom: 1px solid var(--gray-200);
+}
+.rte-content:focus { background: #fafffe; }
+.rte-content[data-placeholder]:empty::before {
+  content: attr(data-placeholder);
+  color: var(--gray-400); pointer-events: none;
+}
+.tiêu-đề-input {
+  width: 100%; padding: 12px 16px;
+  border: none; border-bottom: 1px solid var(--gray-200);
+  font-family: inherit; font-size: 16px; font-weight: 700;
+  color: #1a2620; outline: none; background: white;
+}
+.tiêu-đề-input::placeholder { color: var(--gray-400); font-weight: 500; }
+
+/* ===== SCROLLBARS ===== */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--gray-300); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gray-400); }
+</style>
+</head>
+<body>
+
+<!-- ===== TOPBAR ===== -->
+<div class="topbar">
+  <div class="topbar-brand">
+    <div class="logo-icon">
+      <svg viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg" width="32" height="32">
+        <rect width="42" height="42" rx="8" fill="#7a3a00"/>
+        <rect x="12" y="26" width="18" height="10" fill="#fad96a"/>
+        <rect x="18" y="28" width="6" height="8" rx="1" fill="#7a3a00"/>
+        <polygon points="6,26 21,17 36,26" fill="#fad96a"/>
+        <polygon points="12,19 21,12 30,19" fill="#f0d080"/>
+        <polygon points="18,12 21,6 24,12" fill="#ffffff"/>
+        <rect x="13" y="26" width="2" height="10" fill="#c9a84c"/>
+        <rect x="27" y="26" width="2" height="10" fill="#c9a84c"/>
+      </svg>
+    </div>
+    <span class="app-name">Quản Lý Công Việc</span>
+  </div>
+
+  <div class="topbar-datetime">
+    <span class="dt-duong" id="dtDuong"></span>
+    <span class="dt-am" id="dtAm"></span>
+  </div>
+
+  <div class="topbar-actions">
+    <button class="tb-action">📢 Thông Báo Toàn Chùa</button>
+    <button class="tb-action">+ Đề Xuất</button>
+    <button class="tb-action primary">+ Thêm Việc</button>
+    <div class="user-block">
+      <div class="avatar">PA</div>
+      <div class="user-info">
+        <span class="user-name">Phan Tuấn Anh</span>
+        <span class="user-role">Ban Tri Sự · Trưởng Ban</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SUBNAV (Trang Chủ đã xóa) ===== -->
+<div class="subnav">
+  <div class="subnav-item active">📋 Ban Tri Sự</div>
+  <div class="subnav-item">📑 Các Đầu Mục CV</div>
+  <div class="subnav-item">📅 Lịch Công Tác</div>
+  <div class="subnav-item">📦 Dự Toán Cung Ứng</div>
+  <div class="subnav-right">
+    <button class="subnav-action">← Quay Lại Danh Sách</button>
+    <button class="subnav-action">+ Đề Xuất</button>
+    <button class="subnav-action primary">✏️ Chỉnh Sửa</button>
+  </div>
+</div>
+
+<!-- ===== MAIN ===== -->
+<div class="main-layout">
+  <div class="detail-panel">
+
+    <!-- 1. BAN TRI SỰ HEADER CARD -->
+    <div class="ban-header-card">
+      <div class="ban-title-row">
+        <div class="ban-left">
+          <div class="ban-name">Ban Tri Sự</div>
+          <div class="ban-chucvu">Trưởng Ban</div>
+          <div class="ban-meta-row">
+            <div class="ban-meta-item">
+              <div class="ban-meta-icon">👤</div>
+              Phan Tuấn Anh
+            </div>
+            <div class="ban-meta-item">
+              <div class="ban-meta-icon">📞</div>
+              012345678
+            </div>
+          </div>
+        </div>
+        <span class="ban-code">Mã: #BTS-2026-002</span>
+      </div>
+    </div>
+
+    <!-- 2. TASK TITLE -->
+    <div class="task-title-section">
+      <div class="task-title-big">Tổ chức Đại lễ Phật đản</div>
+      <div class="doing-badge">
+        <span class="doing-clock">⏳</span>
+        Đang thực hiện
+      </div>
+    </div>
+
+    <!-- 3. NỘI DUNG CHI TIẾT CÔNG VIỆC -->
+    <div class="detail-content-card">
+      <div class="info-card-label">📄 Nội Dung Chi Tiết Công Việc</div>
+      <div class="info-note">
+        <p>Tổ chức Đại Lễ Phật Đản năm 2026 (PL. 2570) trang nghiêm, thanh tịnh và đúng nghi lễ truyền thống. Các hạng mục cần hoàn thành bao gồm:</p>
+        <p>• <strong>Trang trí khuôn viên</strong>: treo đèn lồng, phướn, băng rôn chào mừng; bài trí bàn thờ Phật Đản và xe hoa tắm Phật.</p>
+        <p>• <strong>Nghi lễ chính</strong>: chuẩn bị nghi thức tắm Phật, lễ dâng hoa, thắp nến cầu nguyện hòa bình vào buổi tối.</p>
+        <p>• <strong>Văn nghệ & thuyết trình</strong>: chương trình văn nghệ Phật giáo, thuyết trình về cuộc đời Đức Phật dành cho Phật tử trẻ.</p>
+        <p>• <strong>Cung ứng & hậu cần</strong>: hoa tươi, nến, nhang, vật phẩm cúng dường, phương tiện đi lại cho chư Tăng.</p>
+        <p>• <strong>Đón tiếp Phật tử</strong>: phân công nhân sự đón tiếp, hướng dẫn và phục vụ nước uống, quà tặng pháp.</p>
+        <p>Toàn bộ kế hoạch cần được Sư Phụ và BLĐ phê duyệt trước ngày 08/05/2026.</p>
+      </div>
+    </div>
+
+    <!-- 4. META INFO GRID -->
+    <div class="meta-grid">
+      <div class="meta-card">
+        <div class="meta-card-label">👤 Trưởng Ban Phụ Trách & Thời Gian</div>
+        <div class="meta-inline-row">
+          <span class="meta-sub-label">Phụ trách:</span>
+          <span class="name-tag">👤 Phan Tuấn Anh</span>
+        </div>
+        <div class="meta-inline-row">
+          <span class="meta-sub-label">Thời gian:</span>
+          <span class="time-val">12/05 – 15/05/2026</span>
+        </div>
+      </div>
+      <div class="meta-card">
+        <div class="meta-card-label">🤝 Các Ban Phối Hợp & Nhân Sự</div>
+        <div class="ban-pills">
+          <span class="ban-pill">📊 Ban Tài Chính</span>
+          <span class="ban-pill blue">📝 Ban Văn Phòng</span>
+          <span class="ban-pill purple">🔧 Ban Kỹ Thuật</span>
+          <span class="ban-pill orange">📦 Ban Cung Ứng</span>
+        </div>
+        <div class="people-row">
+          <span class="people-count">20</span>
+          <span class="people-label">người tham gia</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. TIẾN TRÌNH -->
+    <div class="progress-section">
+      <div class="progress-section-header">
+        <div class="section-title">📊 Tiến Trình Công Việc</div>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span class="progress-pct">Đã hoàn thành: <strong>65%</strong></span>
+          <button class="btn-them-cv" onclick="openAddModal()">➕ Cập Nhật Công Việc</button>
+        </div>
+      </div>
+      <div class="progress-bar-wrap" style="margin-top:10px; margin-bottom:12px;">
+        <div class="progress-bar-fill" style="width:65%"></div>
+      </div>
+      <div class="timeline-scroll-box">
+        <div class="timeline" id="timelineList">
+          <div class="tl-item">
+            <div class="tl-dot pending"></div>
+            <div class="tl-title">⚠ Tổng duyệt chương trình cùng chư Tăng</div>
+            <div class="tl-meta">Dự kiến: 11/05/2026 · Chưa thực hiện</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot active"></div>
+            <div class="tl-title">⏳ Trang trí khuôn viên và bài trí bàn thờ</div>
+            <div class="tl-meta">10/05 – 11/05/2026 · Đang thực hiện</div>
+            <div class="tl-note">Đang thi công. Cần bổ sung thêm đèn lồng khu chánh điện theo chỉ đạo của Sư Phụ.</div>
+            <textarea class="tl-note-editable" placeholder="✏️ Ghi chú thêm nội dung tại đây..."></textarea>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot done"></div>
+            <div class="tl-title">✅ Nhận vật phẩm cúng dường từ Ban Cung Ứng</div>
+            <div class="tl-meta">08/05/2026 · Ban Cung Ứng</div>
+            <div class="tl-note">Đã nhận đủ hoa tươi, nến, nhang và quà tặng pháp. Đang bảo quản tại kho chùa.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot done"></div>
+            <div class="tl-title">✅ Phân công nhân sự đón tiếp Phật tử</div>
+            <div class="tl-meta">06/05/2026 · Phan Tuấn Anh</div>
+            <div class="tl-note">Đã phân công 20 người, chia 3 ca. Tất cả đã xác nhận lịch trực qua hệ thống.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-title">📁 Tổng kết & lưu trữ hồ sơ Đại Lễ</div>
+            <div class="tl-meta">Sau khi lễ kết thúc · Chưa thực hiện</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. HÌNH ẢNH -->
+    <div class="media-card">
+      <div class="section-header-row">
+        <div class="section-hdr">🖼 Hình Ảnh Liên Quan
+          <span style="font-size:13px; font-weight:600; color:var(--gray-500);">(39 ảnh)</span>
+        </div>
+        <button class="add-item-btn" onclick="openAddPhotoModal()">+ Thêm ảnh</button>
+      </div>
+      <div class="media-grid">
+        <div class="media-item">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#2d6a4f"/><stop offset="100%" style="stop-color:#52b788"/></linearGradient></defs>
+            <rect width="100" height="100" fill="url(#g1)"/>
+            <text x="50" y="52" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-size="10" font-family="sans-serif">Trang Trí Lễ</text>
+            <text x="50" y="66" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8" font-family="sans-serif">10/05/2026</text>
+          </svg>
+          <div class="media-overlay">
+            <button class="media-btn">👁 Xem</button>
+            <button class="media-btn">⬇ Tải về</button>
+          </div>
+        </div>
+        <div class="media-item">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#1a4a2e"/><stop offset="100%" style="stop-color:#2d6a4f"/></linearGradient></defs>
+            <rect width="100" height="100" fill="url(#g2)"/>
+            <text x="50" y="52" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-size="10" font-family="sans-serif">Xe Hoa Tắm Phật</text>
+            <text x="50" y="66" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8" font-family="sans-serif">08/05/2026</text>
+          </svg>
+          <div class="media-overlay">
+            <button class="media-btn">👁 Xem</button>
+            <button class="media-btn">⬇ Tải về</button>
+          </div>
+        </div>
+        <div class="media-item">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#c9a84c"/><stop offset="100%" style="stop-color:#e07b39"/></linearGradient></defs>
+            <rect width="100" height="100" fill="url(#g3)"/>
+            <text x="50" y="52" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-size="10" font-family="sans-serif">Vật Phẩm Lễ</text>
+            <text x="50" y="66" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8" font-family="sans-serif">06/05/2026</text>
+          </svg>
+          <div class="media-overlay">
+            <button class="media-btn">👁 Xem</button>
+            <button class="media-btn">⬇ Tải về</button>
+          </div>
+        </div>
+        <div class="media-item-overflow" onclick="openLightbox()">
+          <div class="overflow-bg"></div>
+          <div class="overflow-label">
+            <span class="overflow-count">+36</span>
+            <span class="overflow-text">ảnh khác</span>
+            <span style="font-size:10px; opacity:0.6; margin-top:2px;">Nhấn để xem tất cả</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. TÀI LIỆU -->
+    <div class="media-card">
+      <div class="section-header-row">
+        <div class="section-hdr">📄 Tài Liệu & Dữ Liệu</div>
+        <button class="add-item-btn">+ Đính kèm</button>
+      </div>
+      <div class="doc-list">
+        <div class="doc-item">
+          <div class="doc-icon">📕</div>
+          <div class="doc-info">
+            <div class="doc-name">KeHoach_DaiLePhatDan_2026.pdf</div>
+            <div class="doc-meta">PDF · 1.4 MB · Tải lên 01/05/2026</div>
+          </div>
+          <div class="doc-actions">
+            <button class="doc-btn">👁 Xem</button>
+            <button class="doc-btn primary">⬇ Tải về</button>
+          </div>
+        </div>
+        <div class="doc-item">
+          <div class="doc-icon">📗</div>
+          <div class="doc-info">
+            <div class="doc-name">DuToan_VatPham_PhatDan.xlsx</div>
+            <div class="doc-meta">Excel · 720 KB · Ban Cung Ứng · 05/05/2026</div>
+          </div>
+          <div class="doc-actions">
+            <button class="doc-btn">👁 Xem</button>
+            <button class="doc-btn primary">⬇ Tải về</button>
+          </div>
+        </div>
+        <div class="doc-item">
+          <div class="doc-icon">📘</div>
+          <div class="doc-info">
+            <div class="doc-name">ChuongTrinh_VanNghe_PhatDan.docx</div>
+            <div class="doc-meta">Word · 186 KB · Ban Văn Phòng · 04/05/2026</div>
+          </div>
+          <div class="doc-actions">
+            <button class="doc-btn">👁 Xem</button>
+            <button class="doc-btn primary">⬇ Tải về</button>
+          </div>
+        </div>
+      </div>
+      <div class="doc-limit-note">
+        ⚠️ Lưu ý: Không tải tài liệu quá nặng — tối đa <strong>20 MB</strong> mỗi file. Hỗ trợ: PDF, DOCX, XLSX, JPG, PNG.
+      </div>
+      <div class="upload-zone" onclick="alert('Chọn file để tải lên...')">
+        <div class="upload-icon">📤</div>
+        <div class="upload-text">Tải Lên Tài Liệu / Hình Ảnh Đại Lễ</div>
+        <div class="upload-sub">Kéo thả file vào đây hoặc nhấn để chọn · Tối đa 20 MB / file</div>
+      </div>
+    </div>
+
+    <!-- 8. XIN Ý KIẾN -->
+    <div class="approval-panel">
+      <div class="section-header-row" style="margin-bottom:14px;">
+        <div class="section-hdr">✉️ Xin Ý Kiến Phê Duyệt</div>
+      </div>
+      <div class="approval-buttons">
+        <!-- Bỏ dòng phụ "Xin ý kiến chỉ đạo" -->
+        <button class="approval-btn sp" onclick="openApprovalModal('sp')">
+          Xin Sư Phụ / BLĐ Chỉ Dạy
+        </button>
+        <button class="approval-btn bld" onclick="openApprovalModal('bld')">
+          <span style="font-size:22px;">🤝</span>
+          Ý Kiến Phối Hợp Các Ban
+        </button>
+      </div>
+      <div style="font-size:13px; font-weight:800; color:#2c3e30; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px;">
+        📜 Lịch Sử Xin Ý Kiến
+      </div>
+      <div class="approval-history" id="approvalHistory">
+        <div class="approval-history-item">
+          <div class="ahi-header" onclick="toggleHistory(this)">
+            <div class="ahi-left">
+              <span class="ahi-tag sp">Sư Phụ/ BLĐ chỉ dạy</span>
+              <span class="ahi-title">Xin chỉ dạy về kế hoạch trang trí Đại Lễ</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span class="ahi-date">06/05/2026 · 08:30</span>
+              <span class="ahi-expand">▼</span>
+            </div>
+          </div>
+          <div class="ahi-body">
+            <strong>Tiêu đề:</strong> Xin chỉ dạy về kế hoạch trang trí Đại Lễ<br><br>
+            Kính bạch Sư Phụ,<br>
+            Con kính xin Sư Phụ chỉ dạy về phần <strong>trang trí khuôn viên</strong> cho Đại Lễ Phật Đản. Khu chánh điện đang được bổ sung thêm đèn lồng theo đúng truyền thống, con đã ghi rõ danh mục và <u>kế hoạch hoàn thành trước ngày 11/05</u>. Kính xin Sư Phụ hoan hỷ xem xét và chỉ dạy thêm ạ.
+            <div class="ahi-response">
+              <div class="ahi-response-label">📖 Nội dung chỉ dạy</div>
+              <div class="ahi-response-content">
+                Thầy đã xem qua kế hoạch, nhìn chung đã đúng hướng. Cần lưu ý thêm:<br>
+                • Đèn lồng khu chánh điện nên dùng màu <strong>vàng và đỏ</strong> theo đúng truyền thống Phật giáo.<br>
+                • Bàn thờ Phật Đản đặt chính diện, xe hoa tắm Phật bố trí phía trước sân chính.<br>
+                • Kiểm tra lại toàn bộ trước 9h sáng ngày 12/05 để Thầy duyệt lần cuối.<br><br>
+                Thầy tin tưởng các con sẽ hoàn thành tốt. Hãy tâm niệm mỗi công việc đều là sự cúng dường lên Đức Phật.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="approval-history-item">
+          <div class="ahi-header" onclick="toggleHistory(this)">
+            <div class="ahi-left">
+              <span class="ahi-tag bld">🤝 Phối Hợp</span>
+              <span class="ahi-title">Phối hợp Ban Cung Ứng về vật phẩm cúng dường</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span class="ahi-date">05/05/2026 · 14:00</span>
+              <span class="ahi-expand">▼</span>
+            </div>
+          </div>
+          <div class="ahi-body">
+            <strong>Tiêu đề:</strong> Phối hợp Ban Cung Ứng về vật phẩm cúng dường<br><br>
+            Kính gửi Ban Cung Ứng,<br>
+            Ban Tri Sự kính đề nghị Ban Cung Ứng xác nhận danh mục vật phẩm cúng dường cho Đại Lễ Phật Đản gồm: hoa tươi, nến, nhang và quà tặng pháp. Kính nhờ quý Ban hoàn tất giao nhận trước ngày 08/05/2026 để kịp bài trí.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== LIGHTBOX ===== -->
+<div class="lightbox-overlay" id="lightboxOverlay" onclick="closeLightbox(event)">
+  <div class="lightbox-inner">
+    <div class="lightbox-header">
+      <span class="lightbox-title">🖼 Tất Cả Hình Ảnh — 39 ảnh</span>
+      <button class="lightbox-close" onclick="closeLightboxBtn()">✕</button>
+    </div>
+    <div class="lightbox-grid" id="lightboxGrid"></div>
+  </div>
+</div>
+
+<!-- ===== MODAL CẬP NHẬT CÔNG VIỆC ===== -->
+<div class="modal-overlay" id="addModal" onclick="closeModalOut(event,'addModal')">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3>➕ Cập Nhật Tiến Trình Công Việc</h3>
+      <button class="modal-close" onclick="closeModal('addModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-label">Chọn đầu mục công việc</div>
+      <div class="checklist-group">
+        <label class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"> <span class="check-item-label">⏳ Trang trí khuôn viên và bài trí bàn thờ</span>
+        </label>
+        <label class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"> <span class="check-item-label">⚠ Tổng duyệt chương trình cùng chư Tăng</span>
+        </label>
+        <label class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"> <span class="check-item-label">📁 Tổng kết & lưu trữ hồ sơ Đại Lễ</span>
+        </label>
+        <label class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"> <span class="check-item-label">📝 Hoàn thiện chương trình văn nghệ Phật Đản</span>
+        </label>
+        <label class="check-item" onclick="toggleCheck(this)">
+          <input type="checkbox"> <span class="check-item-label">🔧 Kiểm tra hệ thống âm thanh, ánh sáng sân lễ</span>
+        </label>
+      </div>
+      <div class="modal-label" style="margin-bottom:8px;">Thêm Nội Dung Công Việc</div>
+      <div class="modal-rte-wrap">
+        <div class="modal-rte-toolbar">
+          <select class="modal-rte-select" id="modalFontSize" onchange="modalExecCmd('fontSize', this.value); this.value=''">
+            <option value="">Cỡ chữ</option>
+            <option value="2">Nhỏ</option>
+            <option value="3">Bình thường</option>
+            <option value="4">Lớn hơn</option>
+            <option value="5">Lớn</option>
+            <option value="6">Rất lớn</option>
+          </select>
+          <div class="modal-rte-sep"></div>
+          <button class="modal-rte-btn" onclick="modalExecCmd('bold')"><strong>B</strong></button>
+          <button class="modal-rte-btn" onclick="modalExecCmd('italic')"><em>I</em></button>
+          <button class="modal-rte-btn" onclick="modalExecCmd('underline')"><u>U</u></button>
+          <div class="modal-rte-sep"></div>
+          <button class="modal-rte-btn" onclick="modalExecCmd('insertUnorderedList')">• —</button>
+          <button class="modal-rte-btn" onclick="modalExecCmd('insertOrderedList')">1.</button>
+          <div class="modal-rte-sep"></div>
+          <button class="modal-rte-btn" onclick="modalExecCmd('justifyLeft')">≡←</button>
+          <button class="modal-rte-btn" onclick="modalExecCmd('justifyCenter')">≡</button>
+          <button class="modal-rte-btn" onclick="modalExecCmd('justifyRight')">→≡</button>
+        </div>
+        <div class="modal-rte-content" id="modalRteContent" contenteditable="true"
+             data-placeholder="Nhập nội dung công việc tại đây..."></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="modal-btn cancel" onclick="closeModal('addModal')">Hủy bỏ</button>
+      <button class="modal-btn save" onclick="saveNewTask()">✅ Lưu Cập Nhật</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MODAL XIN Ý KIẾN ===== -->
+<div class="modal-overlay" id="approvalModal" onclick="closeModalOut(event,'approvalModal')">
+  <div class="approval-modal-box">
+    <div class="approval-modal-header" id="approvalModalHeader">
+      <h3 id="approvalModalTitle">Xin Sư Phụ / BLĐ Chỉ Dạy</h3>
+      <button class="modal-close" onclick="closeModal('approvalModal')">✕</button>
+    </div>
+    <input type="text" class="tiêu-đề-input" id="approvalTitleInput" placeholder="📌 Nhập tiêu đề nội dung xin ý kiến...">
+    <div class="rte-toolbar">
+      <select class="rte-select" onchange="execCmd('fontSize', this.value); this.value=''">
+        <option value="">Cỡ chữ</option>
+        <option value="3">Bình thường</option>
+        <option value="4">Lớn hơn</option>
+        <option value="5">Lớn</option>
+        <option value="6">Rất lớn</option>
+      </select>
+      <div class="rte-sep"></div>
+      <button class="rte-btn" onclick="execCmd('bold')"><strong>B</strong></button>
+      <button class="rte-btn" onclick="execCmd('italic')"><em>I</em></button>
+      <button class="rte-btn" onclick="execCmd('underline')"><u>U</u></button>
+      <div class="rte-sep"></div>
+      <button class="rte-btn" onclick="execCmd('justifyLeft')">≡←</button>
+      <button class="rte-btn" onclick="execCmd('justifyCenter')">≡</button>
+      <button class="rte-btn" onclick="execCmd('justifyRight')">→≡</button>
+      <div class="rte-sep"></div>
+      <button class="rte-btn" onclick="execCmd('insertUnorderedList')">• —</button>
+      <button class="rte-btn" onclick="insertLineBreak()">↕ Dãn</button>
+    </div>
+    <div class="rte-content" id="rteContent" contenteditable="true"
+         data-placeholder="Nhập nội dung xin ý kiến tại đây..."></div>
+    <div class="modal-footer" style="background:var(--gray-100); border-top:1px solid var(--gray-200);">
+      <button class="modal-btn cancel" onclick="closeModal('approvalModal')">Hủy bỏ</button>
+      <button class="modal-btn save" id="approvalSendBtn" onclick="sendApproval()">📨 Gửi Xin Ý Kiến</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const LUNAR_TABLE = {
+  '2026-04-28':{day:11,month:3},'2026-04-29':{day:12,month:3},
+  '2026-04-30':{day:13,month:3},'2026-05-01':{day:14,month:3},
+  '2026-05-02':{day:15,month:3},'2026-05-03':{day:16,month:3},
+  '2026-05-04':{day:17,month:3},'2026-05-05':{day:18,month:3},
+  '2026-05-06':{day:19,month:3},'2026-05-07':{day:20,month:3},
+  '2026-05-08':{day:21,month:3},'2026-05-09':{day:22,month:3},
+  '2026-05-10':{day:23,month:3},'2026-05-11':{day:24,month:3},
+  '2026-05-12':{day:25,month:3},'2026-05-13':{day:26,month:3},
+  '2026-05-14':{day:27,month:3},'2026-05-15':{day:28,month:3},
+};
+const THU = ['Chủ Nhật','Thứ Hai','Thứ Ba','Thứ Tư','Thứ Năm','Thứ Sáu','Thứ Bảy'];
+
+function initTopbarDatetime() {
+  const now = new Date();
+  const thu = THU[now.getDay()];
+  const dd = String(now.getDate()).padStart(2,'0');
+  const mm = String(now.getMonth()+1).padStart(2,'0');
+  const yyyy = now.getFullYear();
+  document.getElementById('dtDuong').textContent = `${thu}, ${dd}/${mm}/${yyyy}`;
+  const key = now.toISOString().split('T')[0];
+  const lunar = LUNAR_TABLE[key];
+  if (lunar) document.getElementById('dtAm').textContent = `🌙 ${lunar.day} tháng ${lunar.month} Âm Lịch`;
+}
+
+function toggleCheck(label){
+  const cb = label.querySelector('input[type="checkbox"]');
+  cb.checked = !cb.checked;
+  label.classList.toggle('selected', cb.checked);
+}
+
+function openAddModal(){ document.getElementById('addModal').classList.add('active'); }
+function closeModal(id){ document.getElementById(id).classList.remove('active'); }
+function closeModalOut(e, id){ if(e.target === document.getElementById(id)) closeModal(id); }
+
+function modalExecCmd(cmd, val){
+  document.getElementById('modalRteContent').focus();
+  if(val) document.execCommand(cmd, false, val);
+  else document.execCommand(cmd, false, null);
+}
+
+function saveNewTask(){
+  const checks = document.querySelectorAll('#addModal .check-item.selected .check-item-label');
+  const contentEl = document.getElementById('modalRteContent');
+  const content = contentEl.innerHTML.trim();
+  if(checks.length===0){ alert('Vui lòng chọn ít nhất một đầu mục công việc.'); return; }
+  const now = new Date();
+  const dateStr = `${String(now.getDate()).padStart(2,'0')}/${String(now.getMonth()+1).padStart(2,'0')}/${now.getFullYear()}`;
+  const timeStr = `${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
+  const timeline = document.getElementById('timelineList');
+  checks.forEach(lbl => {
+    const item = document.createElement('div');
+    item.className = 'tl-item new-item';
+    item.innerHTML = `
+      <div class="tl-dot active"></div>
+      <div class="tl-title">🆕 ${lbl.textContent}</div>
+      <div class="tl-meta">${dateStr} · ${timeStr} · Phan Tuấn Anh</div>
+      ${content && content !== '<br>' ? `<div class="tl-note">${content}</div>` : ''}
+      <textarea class="tl-note-editable" placeholder="✏️ Ghi chú thêm nội dung..."></textarea>
+    `;
+    timeline.insertBefore(item, timeline.firstChild);
+  });
+  closeModal('addModal');
+  contentEl.innerHTML = '';
+  document.querySelectorAll('#addModal .check-item').forEach(el=>{ el.classList.remove('selected'); el.querySelector('input').checked=false; });
+}
+
+function openLightbox(){
+  const overlay = document.getElementById('lightboxOverlay');
+  const grid = document.getElementById('lightboxGrid');
+  overlay.classList.add('active');
+  if(grid.innerHTML !== '') return;
+  const colors = [['#2d6a4f','#52b788'],['#1a4a2e','#2d6a4f'],['#c9a84c','#e07b39'],['#2471a3','#52b788'],['#8e44ad','#c9a84c'],['#27ae60','#1a4a2e']];
+  const labels = ['Trang Trí Lễ','Xe Hoa Tắm Phật','Vật Phẩm Lễ','Ban Tài Chính','Kỹ Thuật','Cung Ứng'];
+  for(let i=0;i<39;i++){
+    const c = colors[i%colors.length];
+    const lb = labels[i%labels.length];
+    const div = document.createElement('div'); div.className='lb-item';
+    div.innerHTML = `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="lg${i}" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:${c[0]}"/><stop offset="100%" style="stop-color:${c[1]}"/></linearGradient></defs><rect width="100" height="100" fill="url(#lg${i})"/><text x="50" y="48" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="9" font-family="sans-serif">${lb}</text><text x="50" y="62" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="7.5" font-family="sans-serif">Ảnh ${i+1}/39</text></svg>`;
+    grid.appendChild(div);
+  }
+}
+function closeLightbox(e){ if(e.target===document.getElementById('lightboxOverlay')) document.getElementById('lightboxOverlay').classList.remove('active'); }
+function closeLightboxBtn(){ document.getElementById('lightboxOverlay').classList.remove('active'); }
+function openAddPhotoModal(){ alert('Chọn ảnh để tải lên…'); }
+
+let currentApprovalType = 'sp';
+function openApprovalModal(type){
+  currentApprovalType = type;
+  const modal = document.getElementById('approvalModal');
+  const header = document.getElementById('approvalModalHeader');
+  const title = document.getElementById('approvalModalTitle');
+  const btn = document.getElementById('approvalSendBtn');
+  if(type==='sp'){
+    header.className = 'approval-modal-header sp';
+    title.textContent = 'Xin Sư Phụ / BLĐ Chỉ Dạy';
+    btn.style.background = 'var(--gold)'; btn.style.borderColor = 'var(--gold)'; btn.style.color = '#1a2e00';
+  } else {
+    header.className = 'approval-modal-header bld';
+    title.textContent = '🤝 Ý Kiến Phối Hợp Các Ban';
+    btn.style.background = 'var(--green-main)'; btn.style.borderColor = 'var(--green-main)'; btn.style.color = 'white';
+  }
+  document.getElementById('approvalTitleInput').value = '';
+  document.getElementById('rteContent').innerHTML = '';
+  modal.classList.add('active');
+}
+
+function execCmd(cmd, val){
+  document.getElementById('rteContent').focus();
+  if(val) document.execCommand(cmd, false, val);
+  else document.execCommand(cmd, false, null);
+}
+function insertLineBreak(){
+  const el = document.getElementById('rteContent');
+  el.focus();
+  document.execCommand('insertHTML', false, '<br><br>');
+}
+
+function sendApproval(){
+  const titleEl = document.getElementById('approvalTitleInput');
+  const contentEl = document.getElementById('rteContent');
+  const titleVal = titleEl.value.trim();
+  const contentVal = contentEl.innerHTML.trim();
+  if(!titleVal){ alert('Vui lòng nhập tiêu đề.'); titleEl.focus(); return; }
+  if(!contentVal || contentVal==='<br>'){ alert('Vui lòng nhập nội dung.'); contentEl.focus(); return; }
+  const now = new Date();
+  const dateStr = `${String(now.getDate()).padStart(2,'0')}/${String(now.getMonth()+1).padStart(2,'0')}/${now.getFullYear()}`;
+  const timeStr = `${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
+  const type = currentApprovalType;
+  const tagLabel = type==='sp' ? 'Sư Phụ/ BLĐ chỉ dạy' : '🤝 Phối Hợp';
+  const tagClass = type==='sp' ? 'sp' : 'bld';
+  const history = document.getElementById('approvalHistory');
+  const item = document.createElement('div');
+  item.className = 'approval-history-item';
+  item.innerHTML = `<div class="ahi-header" onclick="toggleHistory(this)"><div class="ahi-left"><span class="ahi-tag ${tagClass}">${tagLabel}</span><span class="ahi-title">${titleVal}</span></div><div style="display:flex;align-items:center;gap:10px;"><span class="ahi-date">${dateStr} · ${timeStr}</span><span class="ahi-expand">▼</span></div></div><div class="ahi-body open"><strong>Tiêu đề:</strong> ${titleVal}<br><br>${contentVal}</div>`;
+  history.insertBefore(item, history.firstChild);
+  closeModal('approvalModal');
+}
+
+function toggleHistory(header){
+  const body = header.nextElementSibling;
+  const arrow = header.querySelector('.ahi-expand');
+  body.classList.toggle('open');
+  arrow.classList.toggle('open');
+}
+
+initTopbarDatetime();
+</script>
+</body>
+</html>
