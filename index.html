@@ -80,23 +80,18 @@
   .logo-icon {
     width: 32px; height: 32px; border-radius: 7px;
     display: flex; align-items: center; justify-content: center;
-    overflow: hidden;
-    flex-shrink: 0;
+    overflow: hidden; flex-shrink: 0;
   }
   .app-name { font-size: 14px; font-weight: 800; letter-spacing: 0.3px; color: var(--burgundy); white-space: nowrap; }
   .topbar-datetime {
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     padding: 0 18px;
     border-right: 1.5px solid var(--tb-sep);
-    line-height: 1.25;
-    flex-shrink: 0;
+    line-height: 1.25; flex-shrink: 0;
   }
   .topbar-datetime .dt-duong { font-size: 12px; font-weight: 700; color: var(--tb-text); white-space: nowrap; }
   .topbar-datetime .dt-am { font-size: 10.5px; color: var(--tb-lunar); font-weight: 500; white-space: nowrap; }
-  .topbar-actions {
-    display: flex; align-items: center; gap: 6px;
-    margin-left: auto; flex-shrink: 0;
-  }
+  .topbar-actions { display: flex; align-items: center; gap: 6px; margin-left: auto; flex-shrink: 0; }
   .tb-action {
     padding: 6px 13px; border-radius: 6px; cursor: pointer;
     font-size: 12px; font-weight: 600; color: var(--tb-text);
@@ -112,51 +107,21 @@
   .avatar {
     width: 34px; height: 34px; background: var(--tb-logo-text); color: var(--tb-bg);
     border-radius: 8px; font-weight: 800; font-size: 13px;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
   }
   .user-info { display: flex; flex-direction: column; line-height: 1.25; }
   .user-info .user-name { font-size: 12px; font-weight: 700; color: var(--tb-text); white-space: nowrap; }
   .user-info .user-role { font-size: 10px; color: var(--tb-lunar); font-weight: 500; white-space: nowrap; }
 
-  /* ===== SUBNAV ===== */
-  .subnav {
-    background: var(--green-main);
-    display: flex; align-items: center;
-    padding: 0 20px; gap: 2px;
-    height: var(--subnav-h);
-    border-bottom: 2px solid var(--gold);
-  }
-  .subnav-item {
-    padding: 7px 13px; color: rgba(255,255,255,0.75);
-    border-radius: var(--radius-sm);
-    cursor: pointer; font-size: 12.5px; font-weight: 500;
-    display: flex; align-items: center; gap: 5px;
-    transition: all 0.2s; white-space: nowrap;
-  }
-  .subnav-item:hover { background: rgba(255,255,255,0.1); color: white; }
-  .subnav-item.active { background: var(--gold); color: var(--green-dark); font-weight: 700; }
-  .subnav-right { margin-left: auto; display: flex; gap: 6px; }
-  .subnav-action {
-    background: rgba(255,255,255,0.12);
-    border: 1px solid rgba(255,255,255,0.2);
-    color: white; padding: 5px 13px;
-    border-radius: 7px; font-size: 12.5px;
-    cursor: pointer; font-family: inherit; font-weight: 500;
-    transition: all 0.2s;
-  }
-  .subnav-action:hover { background: rgba(255,255,255,0.22); }
-  .subnav-action.primary { background: var(--gold); border-color: var(--gold); color: var(--green-dark); font-weight: 700; }
-  .subnav-action.primary:hover { background: var(--gold-light); }
+
 
   /* ===== MAIN SPLIT LAYOUT ===== */
   .main-layout {
     display: flex;
-    height: calc(100vh - var(--topbar-h) - var(--subnav-h));
+    height: calc(100vh - var(--topbar-h));
     overflow: hidden;
   }
 
-  /* ===== LEFT 70% ===== */
   .detail-panel {
     flex: 0 0 70%;
     overflow-y: auto;
@@ -164,7 +129,6 @@
     background: var(--green-bg);
   }
 
-  /* ===== RIGHT 30% — XIN Ý KIẾN ===== */
   .approval-side {
     flex: 0 0 30%;
     border-left: 2px solid var(--gold);
@@ -175,67 +139,38 @@
   }
   .approval-side-header {
     padding: 10px 14px 0;
-    font-size: 11px;
-    font-weight: 800;
-    color: var(--gray-500);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    background: white;
-    border-bottom: 1px solid var(--gray-200);
-    flex-shrink: 0;
+    font-size: 11px; font-weight: 800;
+    color: var(--gray-500); letter-spacing: 0.06em; text-transform: uppercase;
+    background: white; border-bottom: 1px solid var(--gray-200); flex-shrink: 0;
   }
-  .approval-tabs {
-    display: flex;
-    border-bottom: 1px solid var(--gray-200);
-  }
+  .approval-tabs { display: flex; border-bottom: 1px solid var(--gray-200); }
   .atab {
-    flex: 1;
-    padding: 9px 6px;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--gray-500);
-    border-bottom: 2.5px solid transparent;
-    margin-bottom: -1px;
-    transition: all 0.15s;
-    font-family: inherit;
-    text-align: center;
-    line-height: 1.3;
+    flex: 1; padding: 9px 6px; border: none; background: transparent;
+    cursor: pointer; font-size: 11px; font-weight: 600; color: var(--gray-500);
+    border-bottom: 2.5px solid transparent; margin-bottom: -1px;
+    transition: all 0.15s; font-family: inherit; text-align: center; line-height: 1.3;
   }
   .atab.gold { color: #8a6510; border-color: var(--gold); }
   .atab.dark { color: var(--green-dark); border-color: var(--green-dark); }
   .atab.mid  { color: #2d7a4a; border-color: #2d7a4a; }
   .atab:not(.gold):not(.dark):not(.mid):hover { color: var(--gray-700); }
-
   .atab-content { display: none; flex: 1; flex-direction: column; overflow: hidden; }
   .atab-content.active { display: flex; }
 
-  /* messages */
   .chat-messages {
-    flex: 1;
-    overflow-y: auto;
-    padding: 12px 12px 6px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    background: #fafafa;
+    flex: 1; overflow-y: auto; padding: 12px 12px 6px;
+    display: flex; flex-direction: column; gap: 16px; background: #fafafa;
   }
   .msg-wrap { display: flex; flex-direction: column; }
   .msg-card {
-    border: 0.5px solid var(--gray-300);
-    border-radius: var(--radius);
-    padding: 11px 13px;
-    background: white;
-    box-shadow: var(--shadow-sm);
+    border: 0.5px solid var(--gray-300); border-radius: var(--radius);
+    padding: 11px 13px; background: white; box-shadow: var(--shadow-sm);
   }
   .msg-header { display: flex; align-items: flex-start; gap: 9px; margin-bottom: 7px; }
   .msg-avatar {
     width: 28px; height: 28px; border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
-    font-size: 10px; font-weight: 700;
-    flex-shrink: 0;
+    font-size: 10px; font-weight: 700; flex-shrink: 0;
   }
   .av-gold { background: #f5e9c8; color: #7a5c10; }
   .av-dark { background: #c8e6d4; color: #1a5c30; }
@@ -245,65 +180,32 @@
   .msg-role { font-size: 10px; color: var(--gray-500); margin-top: 1px; }
   .msg-time { font-size: 10px; color: var(--gray-400); white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
 
-  /* breadcrumb trong tin nhắn */
   .msg-breadcrumb {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    flex-wrap: wrap;
-    margin-bottom: 6px;
-    padding: 4px 8px;
-    background: var(--gray-100);
-    border-radius: 6px;
-    border-left: 3px solid var(--gold);
+    display: flex; align-items: center; gap: 4px; flex-wrap: wrap;
+    margin-bottom: 6px; padding: 4px 8px;
+    background: var(--gray-100); border-radius: 6px; border-left: 3px solid var(--gold);
   }
-  .bc-item {
-    font-size: 10px;
-    color: var(--gray-500);
-    font-weight: 500;
-  }
+  .bc-item { font-size: 10px; color: var(--gray-500); font-weight: 500; }
   .bc-sep { font-size: 9px; color: var(--gray-400); }
   .bc-current { font-size: 10px; color: var(--green-dark); font-weight: 700; }
   .bc-toggle {
-    margin-left: auto;
-    font-size: 10px;
-    color: var(--green-main);
-    cursor: pointer;
-    font-weight: 600;
-    white-space: nowrap;
-    background: none;
-    border: none;
-    font-family: inherit;
-    padding: 0;
+    margin-left: auto; font-size: 10px; color: var(--green-main);
+    cursor: pointer; font-weight: 600; white-space: nowrap;
+    background: none; border: none; font-family: inherit; padding: 0;
   }
   .bc-toggle:hover { text-decoration: underline; }
   .bc-children {
-    margin-top: 4px;
-    padding: 4px 0 2px 8px;
+    margin-top: 4px; padding: 4px 0 2px 8px;
     border-left: 2px solid var(--green-pale);
-    display: none;
-    flex-direction: column;
-    gap: 3px;
+    display: none; flex-direction: column; gap: 3px;
   }
   .bc-children.open { display: flex; }
   .bc-child-item {
-    font-size: 10px;
-    color: var(--gray-600);
-    padding: 2px 6px;
-    background: white;
-    border-radius: 4px;
-    border: 0.5px solid var(--gray-200);
-    display: flex;
-    align-items: center;
-    gap: 5px;
+    font-size: 10px; color: var(--gray-600); padding: 2px 6px;
+    background: white; border-radius: 4px; border: 0.5px solid var(--gray-200);
+    display: flex; align-items: center; gap: 5px;
   }
-  .bc-child-status {
-    font-size: 9px;
-    padding: 1px 5px;
-    border-radius: 3px;
-    font-weight: 600;
-    margin-left: auto;
-  }
+  .bc-child-status { font-size: 9px; padding: 1px 5px; border-radius: 3px; font-weight: 600; margin-left: auto; }
   .s-done { background: #d4edda; color: #1a5c30; }
   .s-doing { background: var(--blue-bg); color: var(--blue); }
   .s-todo { background: var(--gray-200); color: var(--gray-600); }
@@ -311,20 +213,12 @@
   .msg-body { font-size: 12px; color: var(--gray-700); line-height: 1.6; margin-bottom: 8px; }
   .msg-actions { display: flex; gap: 7px; align-items: center; }
   .act-btn {
-    background: none;
-    border: 0.5px solid var(--gray-300);
-    border-radius: 20px;
-    padding: 3px 11px;
-    font-size: 11px;
-    cursor: pointer;
-    color: var(--gray-600);
-    font-family: inherit;
-    display: flex; align-items: center; gap: 4px;
-    transition: all 0.15s;
+    background: none; border: 0.5px solid var(--gray-300); border-radius: 20px;
+    padding: 3px 11px; font-size: 11px; cursor: pointer; color: var(--gray-600);
+    font-family: inherit; display: flex; align-items: center; gap: 4px; transition: all 0.15s;
   }
   .act-btn:hover { background: var(--green-pale); border-color: var(--green-light); color: var(--green-dark); }
 
-  /* tree thread */
   .tree-root { display: flex; flex-direction: row; padding-left: 14px; margin-top: 0; }
   .tree-spine { display: flex; flex-direction: column; align-items: center; width: 14px; flex-shrink: 0; }
   .spine-line { width: 1.5px; flex: 1; background: var(--gray-300); min-height: 8px; }
@@ -333,36 +227,23 @@
   .branch-connector { width: 12px; flex-shrink: 0; }
   .branch-h { width: 10px; height: 1.5px; background: var(--gray-300); margin-top: 13px; }
   .branch-content { flex: 1; padding: 5px 0 6px; }
-  .reply-card {
-    border: 0.5px solid var(--gray-200);
-    border-radius: var(--radius-sm);
-    padding: 8px 10px;
-    background: white;
-  }
+  .reply-card { border: 0.5px solid var(--gray-200); border-radius: var(--radius-sm); padding: 8px 10px; background: white; }
   .reply-header { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
   .reply-av { width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 8px; font-weight: 700; flex-shrink: 0; }
   .reply-name { font-size: 11px; font-weight: 600; color: var(--gray-800); }
   .reply-time { font-size: 10px; color: var(--gray-400); margin-left: auto; }
   .reply-body { font-size: 11px; color: var(--gray-700); line-height: 1.5; }
 
-  /* reply input */
   .reply-input-box {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    border: 0.5px dashed var(--gray-300);
-    border-radius: var(--radius-sm);
-    padding: 7px 9px;
-    background: var(--gray-100);
+    display: none; flex-direction: column; gap: 5px;
+    border: 0.5px dashed var(--gray-300); border-radius: var(--radius-sm);
+    padding: 7px 9px; background: var(--gray-100);
   }
   .reply-input-box.open { display: flex; }
   .reply-input-box textarea {
-    border: none; outline: none;
-    background: transparent;
-    font-size: 11px; resize: none;
-    color: var(--gray-800);
-    font-family: inherit; line-height: 1.5;
-    width: 100%;
+    border: none; outline: none; background: transparent;
+    font-size: 11px; resize: none; color: var(--gray-800);
+    font-family: inherit; line-height: 1.5; width: 100%;
   }
   .reply-send-row { display: flex; justify-content: flex-end; }
   .reply-send-btn { padding: 3px 12px; border-radius: 20px; border: none; font-size: 11px; font-weight: 600; cursor: pointer; color: white; font-family: inherit; }
@@ -370,28 +251,14 @@
   .rsb-dark { background: var(--green-dark); }
   .rsb-mid  { background: #2d7a4a; }
 
-  /* compose */
   .chat-compose {
-    border-top: 1px solid var(--gray-200);
-    padding: 9px 12px;
-    display: flex;
-    gap: 7px;
-    align-items: flex-end;
-    background: white;
-    flex-shrink: 0;
+    border-top: 1px solid var(--gray-200); padding: 9px 12px;
+    display: flex; gap: 7px; align-items: flex-end; background: white; flex-shrink: 0;
   }
   .chat-compose textarea {
-    flex: 1;
-    border: 0.5px solid var(--gray-300);
-    border-radius: var(--radius-sm);
-    padding: 8px 10px;
-    font-size: 12px;
-    resize: none;
-    height: 50px;
-    background: var(--gray-100);
-    color: var(--gray-800);
-    font-family: inherit;
-    outline: none;
+    flex: 1; border: 0.5px solid var(--gray-300); border-radius: var(--radius-sm);
+    padding: 8px 10px; font-size: 12px; resize: none; height: 50px;
+    background: var(--gray-100); color: var(--gray-800); font-family: inherit; outline: none;
   }
   .chat-compose textarea:focus { border-color: var(--gold); background: white; }
   .compose-btn { padding: 9px 14px; border-radius: var(--radius-sm); border: none; font-size: 12px; font-weight: 700; cursor: pointer; color: white; font-family: inherit; }
@@ -399,21 +266,17 @@
   .cb-dark { background: var(--green-dark); }
   .cb-mid  { background: #2d7a4a; }
 
-  /* ===== LEFT PANEL STYLES ===== */
   .ban-header-card {
     background: white; border-radius: var(--radius-lg);
-    padding: 18px 22px 16px; margin-bottom: 12px;
-    box-shadow: var(--shadow-sm);
-    border-left: 6px solid var(--green-main);
+    padding: 14px 22px; margin-bottom: 12px;
+    box-shadow: var(--shadow-sm); border-left: 6px solid var(--green-main);
   }
-  .ban-title-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+  .ban-title-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
   .ban-name { font-size: 13px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase; color: var(--green-main); margin-bottom: 3px; display: flex; align-items: center; gap: 6px; }
   .ban-name::before { content: ''; display: inline-block; width: 10px; height: 10px; background: var(--gold); border-radius: 2px; }
-  .ban-chucvu { font-size: 22px; font-weight: 800; color: var(--green-dark); letter-spacing: -0.4px; line-height: 1.25; margin-bottom: 6px; }
-  .ban-meta-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
-  .ban-meta-item { display: inline-flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 600; color: #3a5040; }
-  .ban-meta-icon { width: 22px; height: 22px; border-radius: 5px; background: var(--green-pale); display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; }
-  .ban-code { font-size: 12px; color: var(--gray-400); font-weight: 600; border: 1px solid var(--gray-200); border-radius: 6px; padding: 3px 9px; }
+  .ban-chucvu { font-size: 22px; font-weight: 800; color: var(--green-dark); letter-spacing: -0.4px; line-height: 1.25; display: flex; align-items: center; gap: 12px; }
+  .ban-sdt { font-size: 13px; font-weight: 600; color: #3a7050; white-space: nowrap; }
+  .ban-code { font-size: 12px; color: var(--gray-400); font-weight: 600; border: 1px solid var(--gray-200); border-radius: 6px; padding: 3px 9px; flex-shrink: 0; }
 
   .task-title-section {
     background: white; border-radius: var(--radius-lg);
@@ -430,15 +293,13 @@
   .info-note p { margin-bottom: 7px; }
   .info-note p:last-child { margin-bottom: 0; }
 
-  /* FILE TREE */
   .file-tree-section { background: white; border-radius: var(--radius); padding: 16px 20px; margin-bottom: 12px; box-shadow: var(--shadow-sm); }
   .file-tree-header { font-size: 11px; font-weight: 800; color: #2c3e30; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 2px solid var(--green-pale); display: flex; align-items: center; gap: 5px; }
   .ft-node { display: flex; flex-direction: column; }
   .ft-row {
-    display: flex; align-items: center; gap: 8px;
-    padding: 8px 10px; border-radius: var(--radius-sm);
-    border: 1px solid var(--gray-200); background: var(--gray-100);
-    margin-bottom: 6px; cursor: pointer; transition: all 0.2s;
+    display: flex; align-items: center; gap: 8px; padding: 8px 10px;
+    border-radius: var(--radius-sm); border: 1px solid var(--gray-200);
+    background: var(--gray-100); margin-bottom: 6px; cursor: pointer; transition: all 0.2s;
   }
   .ft-row:hover { border-color: var(--green-light); background: var(--green-pale); }
   .ft-row.parent { border-left: 4px solid var(--green-main); font-weight: 700; }
@@ -448,34 +309,20 @@
   .ft-label { flex: 1; font-size: 13px; color: var(--gray-800); }
   .ft-status { font-size: 10px; padding: 2px 7px; border-radius: 4px; font-weight: 700; flex-shrink: 0; }
   .ft-children {
-    margin-left: 20px;
-    padding-left: 14px;
-    border-left: 2px solid var(--green-pale);
-    display: none;
-    flex-direction: column;
-    gap: 0;
-    margin-bottom: 6px;
+    margin-left: 20px; padding-left: 14px; border-left: 2px solid var(--green-pale);
+    display: none; flex-direction: column; gap: 0; margin-bottom: 6px;
   }
   .ft-children.open { display: flex; }
   .ft-child-row {
-    display: flex; align-items: center; gap: 8px;
-    padding: 7px 10px; border-radius: var(--radius-sm);
-    border: 1px solid var(--gray-200); background: white;
-    margin-bottom: 5px; cursor: pointer; transition: all 0.2s;
-    position: relative;
+    display: flex; align-items: center; gap: 8px; padding: 7px 10px;
+    border-radius: var(--radius-sm); border: 1px solid var(--gray-200);
+    background: white; margin-bottom: 5px; cursor: pointer; transition: all 0.2s; position: relative;
   }
-  .ft-child-row::before {
-    content: '';
-    position: absolute;
-    left: -16px; top: 50%;
-    width: 14px; height: 1.5px;
-    background: var(--gray-300);
-  }
+  .ft-child-row::before { content: ''; position: absolute; left: -16px; top: 50%; width: 14px; height: 1.5px; background: var(--gray-300); }
   .ft-child-row:hover { border-color: var(--gold); background: var(--gold-pale); }
   .ft-child-label { flex: 1; font-size: 12px; color: var(--gray-700); }
   .ft-child-meta { font-size: 10px; color: var(--gray-500); }
 
-  /* META GRID */
   .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
   .meta-card { background: white; border-radius: var(--radius); padding: 16px 18px; box-shadow: var(--shadow-sm); }
   .meta-card-label { font-size: 11px; font-weight: 800; color: #2c3e30; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 2px solid var(--green-pale); display: flex; align-items: center; gap: 5px; }
@@ -492,7 +339,6 @@
   .people-count { font-size: 26px; font-weight: 800; color: var(--green-dark); }
   .people-label { font-size: 13px; font-weight: 700; color: #1a2620; }
 
-  /* PROGRESS */
   .progress-section { background: white; border-radius: var(--radius); margin-bottom: 14px; box-shadow: var(--shadow-sm); overflow: hidden; }
   .progress-section-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 18px 12px; border-bottom: 2px solid var(--green-pale); }
   .section-title { font-size: 15px; font-weight: 800; color: var(--green-dark); display: flex; align-items: center; gap: 8px; }
@@ -515,7 +361,6 @@
   .tl-meta { font-size: 12px; color: #3d4f44; font-weight: 600; }
   .tl-note { font-size: 13px; color: #2d3d32; margin-top: 6px; padding: 7px 10px; background: var(--gray-100); border-radius: 6px; border-left: 3px solid var(--green-light); line-height: 1.6; }
 
-  /* MEDIA */
   .media-card { background: white; border-radius: var(--radius); padding: 18px 20px; margin-bottom: 14px; box-shadow: var(--shadow-sm); }
   .section-header-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 2px solid var(--green-pale); }
   .section-hdr { font-size: 15px; font-weight: 800; color: var(--green-dark); display: flex; align-items: center; gap: 7px; }
@@ -535,7 +380,6 @@
   .overflow-count { font-size: 26px; font-weight: 800; line-height: 1; }
   .overflow-text { font-size: 11px; font-weight: 600; opacity: 0.85; }
 
-  /* DOCS */
   .doc-list { display: flex; flex-direction: column; gap: 8px; }
   .doc-item { display: flex; align-items: center; gap: 12px; padding: 11px 14px; background: var(--gray-100); border-radius: var(--radius-sm); border: 1px solid var(--gray-200); transition: all 0.2s; }
   .doc-item:hover { border-color: var(--green-light); background: var(--green-pale); }
@@ -543,7 +387,9 @@
   .doc-info { flex: 1; min-width: 0; }
   .doc-name { font-size: 13px; font-weight: 700; color: var(--gray-800); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .doc-link { font-size: 11px; color: var(--blue); margin-top: 2px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: flex; align-items: center; gap: 4px; }
-  .doc-meta { font-size: 11px; color: #3d4a41; margin-top: 2px; font-weight: 500; }
+  .doc-meta { font-size: 11px; color: #3d4a41; margin-top: 3px; font-weight: 500; display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+  .doc-meta-ban { font-weight: 700; color: var(--green-dark); }
+  .doc-meta-sep { color: var(--gray-400); font-size: 10px; }
   .doc-actions { display: flex; gap: 6px; flex-shrink: 0; }
   .doc-btn { padding: 5px 11px; border-radius: 6px; border: 1px solid var(--gray-300); background: white; font-size: 12px; font-weight: 600; cursor: pointer; font-family: inherit; color: var(--gray-600); display: flex; align-items: center; gap: 3px; transition: all 0.15s; }
   .doc-btn:hover { border-color: var(--green-light); color: var(--green-dark); background: var(--green-pale); }
@@ -556,7 +402,6 @@
   .upload-sub { font-size: 12px; color: #3d4f44; margin-top: 3px; font-weight: 500; }
   .upload-note-unlimited { display: flex; align-items: center; gap: 6px; margin-top: 8px; padding: 7px 12px; background: #e8f5ee; border: 1px solid var(--green-light); border-radius: 8px; font-size: 12px; font-weight: 600; color: var(--green-dark); }
 
-  /* scrollbars */
   ::-webkit-scrollbar { width: 5px; height: 5px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: var(--gray-300); border-radius: 3px; }
@@ -600,51 +445,35 @@
   </div>
 </div>
 
-<!-- SUBNAV (bỏ Trang Chủ) -->
-<div class="subnav">
-  <div class="subnav-item active">📋 Ban Tri Sự</div>
-  <div class="subnav-item">📑 Các Đầu Mục CV</div>
-  <div class="subnav-item">📅 Lịch Công Tác</div>
-  <div class="subnav-item">📦 Dự Toán Cung Ứng</div>
-  <div class="subnav-right">
-    <button class="subnav-action">← Quay Lại Danh Sách</button>
-    <button class="subnav-action">+ Đề Xuất</button>
-    <button class="subnav-action primary">✏️ Chỉnh Sửa</button>
-  </div>
-</div>
+
 
 <!-- MAIN SPLIT -->
 <div class="main-layout">
 
-  <!-- ===== LEFT 70% ===== -->
+  <!-- LEFT 70% -->
   <div class="detail-panel">
 
-    <!-- Header -->
     <div class="ban-header-card">
       <div class="ban-title-row">
         <div>
           <div class="ban-name">Ban Tri Sự</div>
-          <div class="ban-chucvu">Trưởng Ban — Phan Tuấn Anh</div>
-          <div class="ban-meta-row">
-            <div class="ban-meta-item"><div class="ban-meta-icon">👤</div>Phan Tuấn Anh</div>
-            <div class="ban-meta-item"><div class="ban-meta-icon">📞</div>012345678</div>
+          <div class="ban-chucvu">
+            Trưởng Ban — Phan Tuấn Anh
+            <span class="ban-sdt">📞 012345678</span>
           </div>
         </div>
         <span class="ban-code">Mã: #BTS-2026-002</span>
       </div>
     </div>
 
-    <!-- Task Title -->
     <div class="task-title-section">
       <div class="task-title-big">Tổ chức Đại lễ Phật đản</div>
       <div class="doing-badge"><span>⏳</span> Đang thực hiện</div>
     </div>
 
-    <!-- CẤU TRÚC TỆP CHA-CON -->
     <div class="file-tree-section">
       <div class="file-tree-header">📁 Cấu Trúc Công Việc</div>
       <div class="ft-node">
-        <!-- Cha 1 -->
         <div class="ft-row parent" onclick="toggleFt('ft1')">
           <span class="ft-toggle" id="ft1-toggle">▶</span>
           <span class="ft-icon">📂</span>
@@ -652,7 +481,6 @@
           <span class="ft-status s-doing">Đang thực hiện</span>
         </div>
         <div class="ft-children" id="ft1">
-          <!-- Con 1 active -->
           <div class="ft-node">
             <div class="ft-child-row" onclick="toggleFt('ft1-1')" style="font-weight:700; border-left:3px solid var(--gold);">
               <span class="ft-toggle" id="ft1-1-toggle">▶</span>
@@ -693,7 +521,6 @@
               </div>
             </div>
           </div>
-          <!-- Con 2 mờ -->
           <div class="ft-child-row" style="opacity:0.5;">
             <span class="ft-icon">🏮</span>
             <span class="ft-child-label">Tổ chức lễ Vu Lan báo hiếu</span>
@@ -705,7 +532,6 @@
             <span class="bc-child-status s-todo">Chưa bắt đầu</span>
           </div>
         </div>
-        <!-- Cha 2 -->
         <div class="ft-row parent" onclick="toggleFt('ft2')">
           <span class="ft-toggle" id="ft2-toggle">▶</span>
           <span class="ft-icon">📂</span>
@@ -727,7 +553,6 @@
       </div>
     </div>
 
-    <!-- Nội dung chi tiết -->
     <div class="detail-content-card">
       <div class="info-card-label">📄 Nội Dung Chi Tiết Công Việc</div>
       <div class="info-note">
@@ -741,7 +566,6 @@
       </div>
     </div>
 
-    <!-- Meta grid -->
     <div class="meta-grid">
       <div class="meta-card">
         <div class="meta-card-label">👤 Phụ Trách & Thời Gian</div>
@@ -769,7 +593,6 @@
       </div>
     </div>
 
-    <!-- Tiến trình -->
     <div class="progress-section">
       <div class="progress-section-header">
         <div class="section-title">📊 Tiến Trình Công Việc</div>
@@ -815,7 +638,6 @@
       </div>
     </div>
 
-    <!-- Hình ảnh -->
     <div class="media-card">
       <div class="section-header-row">
         <div class="section-hdr">🖼 Hình Ảnh Liên Quan <span style="font-size:13px;font-weight:600;color:var(--gray-500);">(39 ảnh)</span></div>
@@ -844,7 +666,6 @@
       </div>
     </div>
 
-    <!-- Tài liệu -->
     <div class="media-card">
       <div class="section-header-row">
         <div class="section-hdr">📄 Tài Liệu & Dữ Liệu</div>
@@ -855,8 +676,13 @@
           <div class="doc-icon">📕</div>
           <div class="doc-info">
             <div class="doc-name">KeHoach_DaiLePhatDan_2026.pdf</div>
-            <div class="doc-link">🔗 <a href="#" style="color:var(--blue);text-decoration:none;">docs.google.com/document/d/kehoachdailephattan2026</a></div>
-            <div class="doc-meta">PDF · 1.4 MB · 01/05/2026</div>
+            <div class="doc-link">• <a href="#" style="color:var(--blue);text-decoration:none;">docs.google.com/document/d/kehoachdailephattan2026</a></div>
+            <div class="doc-link">• <a href="#" style="color:var(--blue);text-decoration:none;">drive.google.com/file/d/kehoach_dailephatdan_2026</a></div>
+            <div class="doc-meta">
+              <span class="doc-meta-ban">Ban Tri Sự</span><span class="doc-meta-sep">·</span>
+              <span>08:30</span><span class="doc-meta-sep">·</span>
+              <span>19/3 ÂL</span>
+            </div>
           </div>
           <div class="doc-actions">
             <button class="doc-btn">👁 Xem</button>
@@ -867,32 +693,13 @@
           <div class="doc-icon">📗</div>
           <div class="doc-info">
             <div class="doc-name">DuToan_VatPham_PhatDan.xlsx</div>
-            <div class="doc-link">🔗 <a href="#" style="color:var(--blue);text-decoration:none;">docs.google.com/spreadsheets/d/dutoánvậtphẩm2026</a></div>
-            <div class="doc-meta">Excel · 720 KB · Ban Cung Ứng · 05/05/2026</div>
-          </div>
-          <div class="doc-actions">
-            <button class="doc-btn">👁 Xem</button>
-            <button class="doc-btn primary">⬇ Tải</button>
-          </div>
-        </div>
-        <div class="doc-item">
-          <div class="doc-icon">📘</div>
-          <div class="doc-info">
-            <div class="doc-name">ChuongTrinh_VanNghe_PhatDan.docx</div>
-            <div class="doc-link">🔗 <a href="#" style="color:var(--blue);text-decoration:none;">drive.google.com/file/d/chuongtrinh_van_nghe_2026</a></div>
-            <div class="doc-meta">Word · 186 KB · Ban Văn Phòng · 04/05/2026</div>
-          </div>
-          <div class="doc-actions">
-            <button class="doc-btn">👁 Xem</button>
-            <button class="doc-btn primary">⬇ Tải</button>
-          </div>
-        </div>
-        <div class="doc-item">
-          <div class="doc-icon">🖼</div>
-          <div class="doc-info">
-            <div class="doc-name">Banner_DaiLe_PhatDan_2026.png</div>
-            <div class="doc-link">🔗 <a href="#" style="color:var(--blue);text-decoration:none;">drive.google.com/file/d/banner_phattan_2026_design</a></div>
-            <div class="doc-meta">PNG · 3.2 MB · Ban Kỹ Thuật · 03/05/2026</div>
+            <div class="doc-link">• <a href="#" style="color:var(--blue);text-decoration:none;">docs.google.com/spreadsheets/d/dutoan_vatpham_2026</a></div>
+            <div class="doc-link">• <a href="#" style="color:var(--blue);text-decoration:none;">drive.google.com/file/d/dutoan_vatpham_phatdan_2026</a></div>
+            <div class="doc-meta">
+              <span class="doc-meta-ban">Ban Cung Ứng</span><span class="doc-meta-sep">·</span>
+              <span>14:00</span><span class="doc-meta-sep">·</span>
+              <span>18/3 ÂL</span>
+            </div>
           </div>
           <div class="doc-actions">
             <button class="doc-btn">👁 Xem</button>
@@ -910,12 +717,12 @@
       </div>
     </div>
 
-  </div><!-- end detail-panel -->
+  </div>
 
-  <!-- ===== RIGHT 30% — XIN Ý KIẾN ===== -->
+  <!-- RIGHT 30% -->
   <div class="approval-side">
     <div class="approval-side-header">
-      <div style="padding-bottom:8px;">Xin Ý Kiến Phê Duyệt</div>
+      <div style="padding-bottom:8px;">Xin Chỉ Dạy / Xin Ý Kiến</div>
       <div class="approval-tabs">
         <button class="atab gold" onclick="switchTab(0,this)" data-ac="gold">Sư Phụ / BLĐ</button>
         <button class="atab" onclick="switchTab(1,this)" data-ac="dark">Ban Tri Sự</button>
@@ -923,22 +730,15 @@
       </div>
     </div>
 
-    <!-- TAB 0: Sư Phụ / BLĐ -->
     <div class="atab-content active" id="atab-0">
       <div class="chat-messages">
-
-        <!-- Tin 1 -->
         <div class="msg-wrap">
           <div class="msg-card">
             <div class="msg-header">
               <div class="msg-avatar av-gold">SP</div>
-              <div class="msg-meta">
-                <div class="msg-name">Sư Phụ</div>
-                <div class="msg-role">Trụ Trì</div>
-              </div>
+              <div class="msg-meta"><div class="msg-name">Sư Phụ</div><div class="msg-role">Trụ Trì</div></div>
               <div class="msg-time">06/05 · 08:30</div>
             </div>
-            <!-- breadcrumb cây -->
             <div class="msg-breadcrumb">
               <span class="bc-item">Sự kiện lớn trong năm</span>
               <span class="bc-sep">›</span>
@@ -958,25 +758,18 @@
               <button class="act-btn" onclick="toggleReply(this)">💬 Phản hồi</button>
             </div>
           </div>
-          <!-- TREE -->
           <div class="tree-root">
             <div class="tree-spine"><div class="spine-line"></div></div>
             <div class="tree-branches">
-              <!-- Reply từ SP -->
               <div class="branch">
                 <div class="branch-connector"><div class="branch-h"></div></div>
                 <div class="branch-content">
                   <div class="reply-card">
-                    <div class="reply-header">
-                      <div class="reply-av av-gold">SP</div>
-                      <span class="reply-name">Sư Phụ</span>
-                      <span class="reply-time">08:55</span>
-                    </div>
+                    <div class="reply-header"><div class="reply-av av-gold">SP</div><span class="reply-name">Sư Phụ</span><span class="reply-time">08:55</span></div>
                     <div class="reply-body">Kế hoạch đã đúng hướng. Đèn lồng dùng màu vàng và đỏ theo truyền thống. Bàn thờ đặt chính diện, xe hoa tắm Phật ở sân chính. Kiểm tra trước 9h ngày 12/05.</div>
                   </div>
                 </div>
               </div>
-              <!-- ô nhập reply -->
               <div class="branch">
                 <div class="branch-connector"><div class="branch-h"></div></div>
                 <div class="branch-content">
@@ -990,15 +783,11 @@
           </div>
         </div>
 
-        <!-- Tin 2 -->
         <div class="msg-wrap">
           <div class="msg-card">
             <div class="msg-header">
               <div class="msg-avatar av-gold">BLĐ</div>
-              <div class="msg-meta">
-                <div class="msg-name">BLĐ</div>
-                <div class="msg-role">Ban Lãnh Đạo</div>
-              </div>
+              <div class="msg-meta"><div class="msg-name">BLĐ</div><div class="msg-role">Ban Lãnh Đạo</div></div>
               <div class="msg-time">05/05 · 14:00</div>
             </div>
             <div class="msg-breadcrumb">
@@ -1033,7 +822,6 @@
             </div>
           </div>
         </div>
-
       </div>
       <div class="chat-compose">
         <textarea placeholder="Xin ý kiến Sư Phụ / BLĐ..."></textarea>
@@ -1041,17 +829,13 @@
       </div>
     </div>
 
-    <!-- TAB 1: Ban Tri Sự -->
     <div class="atab-content" id="atab-1">
       <div class="chat-messages">
         <div class="msg-wrap">
           <div class="msg-card">
             <div class="msg-header">
               <div class="msg-avatar av-dark">TS</div>
-              <div class="msg-meta">
-                <div class="msg-name">Ban Tri Sự</div>
-                <div class="msg-role">Quản lý nội vụ</div>
-              </div>
+              <div class="msg-meta"><div class="msg-name">Ban Tri Sự</div><div class="msg-role">Quản lý nội vụ</div></div>
               <div class="msg-time">06/05 · 09:15</div>
             </div>
             <div class="msg-breadcrumb">
@@ -1077,11 +861,7 @@
                 <div class="branch-connector"><div class="branch-h"></div></div>
                 <div class="branch-content">
                   <div class="reply-card">
-                    <div class="reply-header">
-                      <div class="reply-av av-dark">TS</div>
-                      <span class="reply-name">Ban Tri Sự</span>
-                      <span class="reply-time">09:40</span>
-                    </div>
+                    <div class="reply-header"><div class="reply-av av-dark">TS</div><span class="reply-name">Ban Tri Sự</span><span class="reply-time">09:40</span></div>
                     <div class="reply-body">Đã xem xét. Đề nghị bổ sung thêm 2 phật tử vào ca sáng thứ Bảy. Danh sách chính thức gửi trước 08/05.</div>
                   </div>
                 </div>
@@ -1098,15 +878,11 @@
             </div>
           </div>
         </div>
-
         <div class="msg-wrap">
           <div class="msg-card">
             <div class="msg-header">
               <div class="msg-avatar av-dark">PT</div>
-              <div class="msg-meta">
-                <div class="msg-name">Phật tử Ngọc Hà</div>
-                <div class="msg-role">Ban Tổ Chức</div>
-              </div>
+              <div class="msg-meta"><div class="msg-name">Phật tử Ngọc Hà</div><div class="msg-role">Ban Tổ Chức</div></div>
               <div class="msg-time">05/05 · 10:30</div>
             </div>
             <div class="msg-body">Xin Ban Tri Sự xác nhận danh sách 15 phật tử phụ trách phân phát quà tặng pháp ngày Đại Lễ.</div>
@@ -1137,17 +913,13 @@
       </div>
     </div>
 
-    <!-- TAB 2: Ban Phối Hợp -->
     <div class="atab-content" id="atab-2">
       <div class="chat-messages">
         <div class="msg-wrap">
           <div class="msg-card">
             <div class="msg-header">
               <div class="msg-avatar av-mid">CU</div>
-              <div class="msg-meta">
-                <div class="msg-name">Ban Cung Ứng</div>
-                <div class="msg-role">Phối hợp cung ứng</div>
-              </div>
+              <div class="msg-meta"><div class="msg-name">Ban Cung Ứng</div><div class="msg-role">Phối hợp cung ứng</div></div>
               <div class="msg-time">05/05 · 14:00</div>
             </div>
             <div class="msg-breadcrumb">
@@ -1174,11 +946,7 @@
                 <div class="branch-connector"><div class="branch-h"></div></div>
                 <div class="branch-content">
                   <div class="reply-card">
-                    <div class="reply-header">
-                      <div class="reply-av av-mid">CU</div>
-                      <span class="reply-name">Ban Cung Ứng</span>
-                      <span class="reply-time">14:35</span>
-                    </div>
+                    <div class="reply-header"><div class="reply-av av-mid">CU</div><span class="reply-name">Ban Cung Ứng</span><span class="reply-time">14:35</span></div>
                     <div class="reply-body">Đã xác nhận: 500 bông hoa sen, 200 nén nhang trầm, 100 nến trang trí. Sẽ giao trước 10/05. Phương tiện chư Tăng đang liên hệ thêm.</div>
                   </div>
                 </div>
@@ -1195,15 +963,11 @@
             </div>
           </div>
         </div>
-
         <div class="msg-wrap">
           <div class="msg-card">
             <div class="msg-header">
               <div class="msg-avatar av-mid">TC</div>
-              <div class="msg-meta">
-                <div class="msg-name">Ban Tài Chính</div>
-                <div class="msg-role">Phối hợp tài chính</div>
-              </div>
+              <div class="msg-meta"><div class="msg-name">Ban Tài Chính</div><div class="msg-role">Phối hợp tài chính</div></div>
               <div class="msg-time">04/05 · 16:00</div>
             </div>
             <div class="msg-body">Kính gửi ban phối hợp — đề nghị xác nhận lại ngân sách dự kiến cho phần trang trí và vật phẩm cúng dường Đại Lễ để Ban Tài Chính cân đối.</div>
@@ -1219,11 +983,7 @@
                 <div class="branch-connector"><div class="branch-h"></div></div>
                 <div class="branch-content">
                   <div class="reply-card">
-                    <div class="reply-header">
-                      <div class="reply-av av-mid">CU</div>
-                      <span class="reply-name">Ban Cung Ứng</span>
-                      <span class="reply-time">16:20</span>
-                    </div>
+                    <div class="reply-header"><div class="reply-av av-mid">CU</div><span class="reply-name">Ban Cung Ứng</span><span class="reply-time">16:20</span></div>
                     <div class="reply-body">Tổng dự kiến khoảng 8.5 triệu đồng. Đã gửi bảng chi tiết qua Google Sheet để Ban Tài Chính xem xét.</div>
                   </div>
                 </div>
@@ -1247,9 +1007,9 @@
       </div>
     </div>
 
-  </div><!-- end approval-side -->
+  </div>
 
-</div><!-- end main-layout -->
+</div>
 
 <script>
 const LUNAR_TABLE = {
@@ -1269,14 +1029,12 @@ function initDatetime() {
   const lunar = LUNAR_TABLE[key];
   if(lunar) document.getElementById('dtAm').textContent = `🌙 ${lunar.day} tháng ${lunar.month} Âm Lịch`;
 }
-
 function switchTab(idx, btn) {
   document.querySelectorAll('.atab-content').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.atab').forEach(b => b.classList.remove('gold','dark','mid'));
   document.getElementById('atab-' + idx).classList.add('active');
   btn.classList.add(btn.getAttribute('data-ac'));
 }
-
 function toggleReply(btn) {
   const wrap = btn.closest('.msg-wrap');
   const boxes = wrap.querySelectorAll('.reply-input-box');
@@ -1284,7 +1042,6 @@ function toggleReply(btn) {
   last.classList.toggle('open');
   if(last.classList.contains('open')) last.querySelector('textarea').focus();
 }
-
 function toggleLike(btn) {
   const span = btn.querySelector('span');
   let n = parseInt(span.textContent);
@@ -1292,16 +1049,11 @@ function toggleLike(btn) {
   else { n++; btn.dataset.liked='1'; btn.style.color='var(--green-main)'; }
   span.textContent = n;
 }
-
 function toggleFt(id) {
   const el = document.getElementById(id);
   const toggle = document.getElementById(id + '-toggle');
-  if(el) {
-    el.classList.toggle('open');
-    if(toggle) toggle.classList.toggle('open');
-  }
+  if(el) { el.classList.toggle('open'); if(toggle) toggle.classList.toggle('open'); }
 }
-
 function toggleBcChildren(btn) {
   const children = btn.nextElementSibling;
   if(!children) return;
@@ -1310,7 +1062,6 @@ function toggleBcChildren(btn) {
     ? btn.textContent.replace('▾','▴')
     : btn.textContent.replace('▴','▾');
 }
-
 initDatetime();
 </script>
 </body>
