@@ -188,16 +188,6 @@
   .msg-role { font-size: 13px; color: var(--gray-600); margin-top: 2px; font-weight: 600; }
   .msg-time { font-size: 13px; color: var(--gray-600); white-space: nowrap; flex-shrink: 0; margin-top: 2px; font-weight: 600; }
 
-  .msg-breadcrumb {
-    display: flex; align-items: center; gap: 4px; flex-wrap: wrap;
-    margin-bottom: 8px; padding: 5px 10px;
-    background: #f0f7f3; border-radius: 6px; border-left: 3px solid var(--gold);
-  }
-  .bc-item { font-size: 13px; color: #1a1a1a; font-weight: 700; }
-  .bc-sep { font-size: 12px; color: var(--gray-500); }
-  .bc-current { font-size: 13px; color: var(--green-dark); font-weight: 800; }
-  .bc-child-count { font-size: 12px; color: var(--gray-600); font-weight: 600; font-style: italic; }
-
   .msg-body { font-size: 15px; color: var(--text-dark); line-height: 1.7; margin-bottom: 10px; font-weight: 500; }
   .msg-actions { display: flex; gap: 8px; align-items: center; }
   .act-btn {
@@ -275,7 +265,6 @@
   .tbc-sep { font-size: 13px; color: var(--gray-400); font-weight: 600; }
   .tbc-plain { font-size: 14px; color: var(--text-dark); font-weight: 700; }
 
-  /* Item có dropdown */
   .tbc-dropdown-wrap { position: relative; display: inline-block; }
   .tbc-item-dd {
     font-size: 14px; color: var(--text-dark); font-weight: 700;
@@ -403,7 +392,6 @@
   .upload-sub { font-size: 14px; color: var(--gray-600); margin-top: 4px; font-weight: 600; }
   .upload-note-unlimited { display: flex; align-items: center; gap: 6px; margin-top: 8px; padding: 8px 14px; background: #e8f5ee; border: 1.5px solid var(--green-light); border-radius: 8px; font-size: 14px; font-weight: 700; color: #0d3d20; }
 
-  /* Dropdown overlay close */
   .dd-overlay { display: none; position: fixed; inset: 0; z-index: 99; }
   .dd-overlay.active { display: block; }
 
@@ -415,7 +403,6 @@
 </head>
 <body>
 
-<!-- Overlay để đóng dropdown khi click ngoài -->
 <div class="dd-overlay" id="ddOverlay" onclick="closeAllDropdowns()"></div>
 
 <!-- TOPBAR -->
@@ -461,32 +448,24 @@
 
     <!-- UNIFIED HEADER -->
     <div class="unified-header-card">
-
-      <!-- Hàng 1: Breadcrumb -->
       <div class="task-breadcrumb">
-
         <div class="tbc-dropdown-wrap">
           <span class="tbc-item-dd" id="dd1-btn" onclick="toggleDropdown('dd1', event)">
             Các sự kiện lớn trong năm
             <span class="dd-arrow">▾</span>
           </span>
           <div class="tbc-dropdown-menu" id="dd1">
-            <!-- Đại lễ Phật Đản: 15/4/Âm Lịch (năm 2026 = 12/05 DL) -->
             <div class="tbc-dd-item current">Đại lễ Phật Đản — 8/4/Âm Lịch</div>
-            <!-- Lễ Vu Lan: 15/7/Âm Lịch — có mũi tên > để dẫn link -->
             <div class="tbc-dd-item" style="cursor:pointer;">
               <span>Lễ Vu Lan — 15/7/Âm Lịch</span>
               <span class="dd-link-arrow">›</span>
             </div>
-            <!-- Lễ Phật Thành Đạo: 8/12/Âm Lịch -->
             <div class="tbc-dd-item">Lễ Phật Thành Đạo — 8/12/Âm Lịch</div>
           </div>
         </div>
-
         <span class="tbc-sep">›</span>
         <span class="tbc-plain">Tổ chức Đại lễ Phật đản</span>
         <span class="tbc-sep">›</span>
-
         <div class="tbc-dropdown-wrap">
           <span class="tbc-item-dd" id="dd2-btn" onclick="toggleDropdown('dd2', event)">
             Các công việc của Ban Tri Sự
@@ -502,7 +481,6 @@
         </div>
       </div>
 
-      <!-- Nội dung chính -->
       <div class="header-main">
         <div class="ban-label">■ BAN TRI SỰ</div>
         <div class="task-title-row">
@@ -514,7 +492,6 @@
           <span class="header-sdt">📞 012345678</span>
         </div>
       </div>
-
     </div>
 
     <!-- NỘI DUNG CHI TIẾT -->
@@ -527,8 +504,7 @@
         <p>• <strong>Văn nghệ &amp; thuyết trình</strong>: chương trình văn nghệ Phật giáo, thuyết trình về cuộc đời Đức Phật.</p>
         <p>• <strong>Cung ứng &amp; hậu cần</strong>: hoa tươi, nến, nhang, vật phẩm cúng dường, phương tiện chư Tăng.</p>
         <p>• <strong>Đón tiếp Phật tử</strong>: phân công nhân sự đón tiếp, hướng dẫn và phục vụ.</p>
-        <!-- 08/05/2026 = 21/3/Âm Lịch -->
-        <p>Toàn bộ kế hoạch cần được Sư Phụ và BLĐ phê duyệt trước ngày <strong>21/3/Âm Lịch</strong>.</p>
+        <p>Toàn bộ kế hoạch cần được Sư Phụ và BLĐ phê duyệt trước ngày <strong>22/3/Âm Lịch</strong>.</p>
       </div>
     </div>
 
@@ -541,8 +517,7 @@
         </div>
         <div class="meta-inline-row">
           <span class="meta-sub-label">Thời gian:</span>
-          <!-- 12/05 = 25/3/Âm Lịch · 15/05 = 28/3/Âm Lịch -->
-          <span class="time-val">25/3 – 28/3/Âm Lịch</span>
+          <span class="time-val">26/3 – 29/3/Âm Lịch</span>
         </div>
       </div>
       <div class="meta-card">
@@ -573,31 +548,27 @@
       </div>
       <div class="timeline-scroll-box">
         <div class="timeline">
-          <!-- 11/05 = 24/3/Âm Lịch -->
           <div class="tl-item">
             <div class="tl-dot pending"></div>
             <div class="tl-title">Tổng duyệt chương trình cùng chư Tăng</div>
-            <div class="tl-meta">Dự kiến: 24/3/Âm Lịch · Chưa thực hiện</div>
+            <div class="tl-meta">Dự kiến: 25/3/Âm Lịch · Chưa thực hiện</div>
           </div>
-          <!-- 10/05 = 23/3/Âm Lịch · 11/05 = 24/3/Âm Lịch -->
           <div class="tl-item">
             <div class="tl-dot active"></div>
             <div class="tl-title">Trang trí khuôn viên và bài trí bàn thờ</div>
-            <div class="tl-meta">23/3 – 24/3/Âm Lịch · Đang thực hiện</div>
+            <div class="tl-meta">24/3 – 25/3/Âm Lịch · Đang thực hiện</div>
             <div class="tl-note">Đang thi công. Cần bổ sung thêm đèn lồng khu chánh điện.</div>
           </div>
-          <!-- 08/05 = 21/3/Âm Lịch -->
           <div class="tl-item">
             <div class="tl-dot done"></div>
             <div class="tl-title">Nhận vật phẩm cúng dường từ Ban Cung Ứng</div>
-            <div class="tl-meta">21/3/Âm Lịch · Ban Cung Ứng</div>
+            <div class="tl-meta">22/3/Âm Lịch · Ban Cung Ứng</div>
             <div class="tl-note">Đã nhận đủ hoa tươi, nến, nhang và quà tặng pháp.</div>
           </div>
-          <!-- 06/05 = 20/3/Âm Lịch -->
           <div class="tl-item">
             <div class="tl-dot done"></div>
             <div class="tl-title">Phân công nhân sự đón tiếp Phật tử</div>
-            <div class="tl-meta">20/3/Âm Lịch · Phan Tuấn Anh</div>
+            <div class="tl-meta">21/3/Âm Lịch · Phan Tuấn Anh</div>
             <div class="tl-note">Đã phân công 20 người, chia 3 ca.</div>
           </div>
         </div>
@@ -647,8 +618,7 @@
             <div class="doc-meta">
               <span class="doc-meta-ban">Ban Tri Sự</span><span class="doc-meta-sep">·</span>
               <span>08:30</span><span class="doc-meta-sep">·</span>
-              <!-- 08/05 = 21/3/Âm Lịch -->
-              <span>21/3/Âm Lịch</span>
+              <span>22/3/Âm Lịch</span>
             </div>
           </div>
           <div class="doc-actions">
@@ -665,8 +635,7 @@
             <div class="doc-meta">
               <span class="doc-meta-ban">Ban Cung Ứng</span><span class="doc-meta-sep">·</span>
               <span>14:00</span><span class="doc-meta-sep">·</span>
-              <!-- 07/05 = 20/3/Âm Lịch -->
-              <span>20/3/Âm Lịch</span>
+              <span>21/3/Âm Lịch</span>
             </div>
           </div>
           <div class="doc-actions">
@@ -706,17 +675,9 @@
             <div class="msg-header">
               <div class="msg-avatar av-gold">SP</div>
               <div class="msg-meta"><div class="msg-name">Sư Phụ</div><div class="msg-role">Trụ Trì · Chỉ Dạy</div></div>
-              <!-- 06/05 = 20/3/Âm Lịch -->
-              <div class="msg-time">20/3/Âm Lịch · 08:30</div>
+              <div class="msg-time">21/3/Âm Lịch · 08:30</div>
             </div>
-            <div class="msg-breadcrumb">
-              <span class="bc-item">Đại lễ Phật Đản</span>
-              <span class="bc-sep">›</span>
-              <span class="bc-current">Ban Tri Sự</span>
-              <span class="bc-child-count">· 5 việc con</span>
-            </div>
-            <!-- 12/05 = 25/3/Âm Lịch -->
-            <div class="msg-body">Kế hoạch Đại Lễ Phật Đản đã đúng hướng. Đèn lồng dùng màu vàng và đỏ theo truyền thống. Bàn thờ đặt chính diện, xe hoa tắm Phật ở sân chính. Ban Tri Sự cần kiểm tra và hoàn tất toàn bộ trước 9h ngày <strong>25/3/Âm Lịch</strong>. Chư Tăng sẽ về đủ trước buổi lễ.</div>
+            <div class="msg-body">Kế hoạch Đại Lễ Phật Đản đã đúng hướng. Đèn lồng dùng màu vàng và đỏ theo truyền thống. Bàn thờ đặt chính diện, xe hoa tắm Phật ở sân chính. Ban Tri Sự cần kiểm tra và hoàn tất toàn bộ trước 9h ngày <strong>26/3/Âm Lịch</strong>. Chư Tăng sẽ về đủ trước buổi lễ.</div>
             <div class="msg-actions">
               <button class="act-btn" onclick="toggleLike(this)">👍 <span>0</span></button>
               <button class="act-btn" onclick="toggleReply(this)">Phản hồi</button>
@@ -730,8 +691,7 @@
                 <div class="branch-content">
                   <div class="reply-card">
                     <div class="reply-header"><div class="reply-av av-dark">TA</div><span class="reply-name">Ban Tri Sự — Tuấn Anh</span><span class="reply-time">09:10</span></div>
-                    <!-- 25/3/Âm Lịch -->
-                    <div class="reply-body">Con kính bạch Sư Phụ, con xin thành kính ghi nhận toàn bộ chỉ dạy của Sư Phụ. Ban Tri Sự sẽ kính tuân — đèn lồng màu vàng và đỏ, bàn thờ đặt chính diện, xe hoa tắm Phật bố trí tại sân chính. Toàn bộ sẽ sẵn sàng trước 9h ngày <strong>25/3/Âm Lịch</strong> để kính cung thỉnh Sư Phụ quang lâm kiểm tra ạ.</div>
+                    <div class="reply-body">Con kính bạch Sư Phụ, con xin thành kính ghi nhận toàn bộ chỉ dạy của Sư Phụ. Ban Tri Sự sẽ kính tuân — đèn lồng màu vàng và đỏ, bàn thờ đặt chính diện, xe hoa tắm Phật bố trí tại sân chính. Toàn bộ sẽ sẵn sàng trước 9h ngày <strong>26/3/Âm Lịch</strong> để kính cung thỉnh Sư Phụ quang lâm kiểm tra ạ.</div>
                     <div class="msg-actions" style="margin-top:7px;">
                       <button class="act-btn" onclick="toggleLike(this)">👍 <span>1</span></button>
                       <button class="act-btn" onclick="toggleReply(this)">Phản hồi</button>
@@ -775,22 +735,13 @@
     <div class="atab-content active" id="atab-1">
       <div class="chat-messages">
 
-        <!-- Tin 1: Ban Tri Sự gửi cho Ban Cung Ứng -->
         <div class="msg-wrap">
           <div class="msg-card">
             <div class="msg-header">
               <div class="msg-avatar av-dark">TA</div>
               <div class="msg-meta"><div class="msg-name">Ban Tri Sự — Tuấn Anh</div><div class="msg-role">Trưởng Ban · Yêu cầu phối hợp</div></div>
-              <!-- 05/05 = 18/3/Âm Lịch -->
-              <div class="msg-time">18/3/Âm Lịch · 13:20</div>
+              <div class="msg-time">19/3/Âm Lịch · 13:20</div>
             </div>
-            <div class="msg-breadcrumb">
-              <span class="bc-item">Đại lễ Phật Đản</span>
-              <span class="bc-sep">›</span>
-              <span class="bc-current">Vật phẩm cúng dường</span>
-              <span class="bc-child-count">· 3 việc con</span>
-            </div>
-            <!-- 10/05 = 23/3/Âm Lịch -->
             <div class="msg-body">Kính thỉnh <strong>@Ban Cung Ứng</strong> xác nhận số lượng hoa, nhang, đèn nến cần chuẩn bị cho Đại Lễ Phật Đản. Ban Tri Sự cần nắm số liệu cụ thể để bố trí nhân sự tiếp nhận và sắp xếp khuôn viên cho kịp tiến độ.</div>
             <div class="msg-actions">
               <button class="act-btn" onclick="toggleLike(this)">👍 <span>0</span></button>
@@ -805,8 +756,7 @@
                 <div class="branch-content">
                   <div class="reply-card">
                     <div class="reply-header"><div class="reply-av av-mid">CU</div><span class="reply-name">Ban Cung Ứng — Minh Châu</span><span class="reply-time">14:05</span></div>
-                    <!-- 10/05 = 23/3/Âm Lịch · 08/05 = 21/3/Âm Lịch -->
-                    <div class="reply-body">Kính thưa <strong>@Ban Tri Sự</strong>, đã xác nhận số lượng: 500 bông hoa sen, 200 nén nhang trầm, 100 nến trang trí. Toàn bộ sẽ được giao đến chùa trước ngày <strong>23/3/Âm Lịch</strong>. Riêng phương tiện đưa đón chư Tăng, Ban Cung Ứng đang liên hệ thêm và sẽ báo lại trước <strong>21/3/Âm Lịch</strong>.</div>
+                    <div class="reply-body">Kính thưa <strong>@Ban Tri Sự</strong>, đã xác nhận số lượng: 500 bông hoa sen, 200 nén nhang trầm, 100 nến trang trí. Toàn bộ sẽ được giao đến chùa trước ngày <strong>24/3/Âm Lịch</strong>. Riêng phương tiện đưa đón chư Tăng, Ban Cung Ứng đang liên hệ thêm và sẽ báo lại trước <strong>22/3/Âm Lịch</strong>.</div>
                     <div class="msg-actions" style="margin-top:7px;">
                       <button class="act-btn" onclick="toggleLike(this)">👍 <span>1</span></button>
                       <button class="act-btn" onclick="toggleReply(this)">Phản hồi</button>
@@ -840,17 +790,14 @@
           </div>
         </div>
 
-        <!-- Tin 2: Ban Tài Chính hỏi ngân sách -->
         <div class="msg-wrap">
           <div class="msg-card">
             <div class="msg-header">
               <div class="msg-avatar av-mid">TC</div>
               <div class="msg-meta"><div class="msg-name">Ban Tài Chính — Thanh Hà</div><div class="msg-role">Phối hợp tài chính</div></div>
-              <!-- 04/05 = 17/3/Âm Lịch -->
-              <div class="msg-time">17/3/Âm Lịch · 16:00</div>
+              <div class="msg-time">18/3/Âm Lịch · 16:00</div>
             </div>
-            <!-- 06/05 = 20/3/Âm Lịch -->
-            <div class="msg-body">Kính thỉnh <strong>@Ban Tri Sự</strong> xác nhận lại ngân sách dự kiến cho phần trang trí và vật phẩm cúng dường Đại Lễ. Ban Tài Chính cần số liệu để cân đối và phê duyệt trước ngày <strong>20/3/Âm Lịch</strong>.</div>
+            <div class="msg-body">Kính thỉnh <strong>@Ban Tri Sự</strong> xác nhận lại ngân sách dự kiến cho phần trang trí và vật phẩm cúng dường Đại Lễ. Ban Tài Chính cần số liệu để cân đối và phê duyệt trước ngày <strong>21/3/Âm Lịch</strong>.</div>
             <div class="msg-actions">
               <button class="act-btn" onclick="toggleLike(this)">👍 <span>1</span></button>
               <button class="act-btn" onclick="toggleReply(this)">Phản hồi</button>
@@ -924,7 +871,6 @@
 </div>
 
 <script>
-// ===== ÂM LỊCH =====
 const LUNAR_TABLE = {
   '2026-05-04':{day:18,month:3},
   '2026-05-05':{day:19,month:3},
@@ -946,10 +892,6 @@ const LUNAR_TABLE = {
 };
 const THU = ['Chủ Nhật','Thứ Hai','Thứ Ba','Thứ Tư','Thứ Năm','Thứ Sáu','Thứ Bảy'];
 
-function getLunar(dateKey) {
-  return LUNAR_TABLE[dateKey] || null;
-}
-
 function initDatetime() {
   const now = new Date();
   const dd = String(now.getDate()).padStart(2,'0');
@@ -957,13 +899,10 @@ function initDatetime() {
   const yyyy = now.getFullYear();
   document.getElementById('dtDuong').textContent = `${THU[now.getDay()]}, ${dd}/${mm}/${yyyy}`;
   const key = `${yyyy}-${mm}-${dd}`;
-  const lunar = getLunar(key);
-  if(lunar) {
-    document.getElementById('dtAm').textContent = `${lunar.day}/${lunar.month}/Âm Lịch`;
-  }
+  const lunar = LUNAR_TABLE[key];
+  if(lunar) document.getElementById('dtAm').textContent = `${lunar.day}/${lunar.month}/Âm Lịch`;
 }
 
-// ===== TABS =====
 function switchTab(idx, btn) {
   document.querySelectorAll('.atab-content').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.atab').forEach(b => b.classList.remove('gold','dark','mid'));
@@ -971,7 +910,6 @@ function switchTab(idx, btn) {
   btn.classList.add(btn.getAttribute('data-ac'));
 }
 
-// ===== REPLY =====
 function toggleReply(btn) {
   const wrap = btn.closest('.msg-wrap');
   const boxes = wrap.querySelectorAll('.reply-input-box');
@@ -980,7 +918,6 @@ function toggleReply(btn) {
   if(last.classList.contains('open')) last.querySelector('textarea').focus();
 }
 
-// ===== LIKE =====
 function toggleLike(btn) {
   const span = btn.querySelector('span');
   let n = parseInt(span.textContent);
@@ -1000,7 +937,6 @@ function toggleLike(btn) {
   span.textContent = n;
 }
 
-// ===== BREADCRUMB DROPDOWN =====
 function toggleDropdown(id, event) {
   event.stopPropagation();
   const menu = document.getElementById(id);
