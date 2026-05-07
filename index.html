@@ -276,12 +276,27 @@
   .ban-sdt { font-size: 13px; font-weight: 600; color: #3a7050; white-space: nowrap; }
   .ban-code { font-size: 12px; color: var(--gray-400); font-weight: 600; border: 1px solid var(--gray-200); border-radius: 6px; padding: 3px 9px; flex-shrink: 0; }
 
-  .task-title-section {
+  /* ===== BREADCRUMB + TIÊU ĐỀ CHUNG CONTAINER ===== */
+  .task-header-card {
     background: white; border-radius: var(--radius-lg);
-    padding: 16px 22px; margin-bottom: 12px;
+    padding: 12px 22px 16px; margin-bottom: 12px;
     box-shadow: var(--shadow-sm); border-top: 3px solid var(--gold);
-    display: flex; align-items: center; justify-content: space-between; gap: 16px;
   }
+  .task-breadcrumb {
+    display: flex; align-items: center; gap: 5px;
+    margin-bottom: 10px; padding-bottom: 10px;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .task-breadcrumb .tbc-icon { font-size: 13px; color: var(--gray-400); flex-shrink: 0; }
+  .task-breadcrumb .tbc-item {
+    font-size: 12px; color: var(--gray-500); font-weight: 500;
+    cursor: pointer; transition: color 0.15s;
+  }
+  .task-breadcrumb .tbc-item:hover { color: var(--green-main); text-decoration: underline; }
+  .task-breadcrumb .tbc-sep { font-size: 11px; color: var(--gray-400); }
+  .task-breadcrumb .tbc-current { font-size: 12px; color: var(--gray-800); font-weight: 800; }
+  .task-breadcrumb .tbc-child { font-size: 11px; color: var(--gray-400); font-weight: 500; font-style: italic; }
+  .task-title-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
   .task-title-big { font-size: 26px; font-weight: 800; color: var(--green-dark); letter-spacing: -0.5px; line-height: 1.25; }
   .doing-badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 14px; border-radius: 20px; background: var(--blue-bg); color: var(--blue); font-size: 13px; font-weight: 700; border: 1px solid rgba(36,113,163,0.2); white-space: nowrap; flex-shrink: 0; }
 
@@ -290,36 +305,6 @@
   .info-note { font-size: 14px; line-height: 1.9; color: #1a2620; font-weight: 500; }
   .info-note p { margin-bottom: 7px; }
   .info-note p:last-child { margin-bottom: 0; }
-
-  .file-tree-section { background: white; border-radius: var(--radius); padding: 16px 20px; margin-bottom: 12px; box-shadow: var(--shadow-sm); }
-  .file-tree-header { font-size: 11px; font-weight: 800; color: #2c3e30; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 2px solid var(--green-pale); display: flex; align-items: center; gap: 5px; }
-  .ft-node { display: flex; flex-direction: column; }
-  .ft-row {
-    display: flex; align-items: center; gap: 8px; padding: 8px 10px;
-    border-radius: var(--radius-sm); border: 1px solid var(--gray-200);
-    background: var(--gray-100); margin-bottom: 6px; cursor: pointer; transition: all 0.2s;
-  }
-  .ft-row:hover { border-color: var(--green-light); background: var(--green-pale); }
-  .ft-row.parent { border-left: 4px solid var(--green-main); font-weight: 700; }
-  .ft-toggle { font-size: 11px; color: var(--gray-500); transition: transform 0.2s; flex-shrink: 0; }
-  .ft-toggle.open { transform: rotate(90deg); }
-  .ft-icon { font-size: 14px; flex-shrink: 0; }
-  .ft-label { flex: 1; font-size: 13px; color: var(--gray-800); }
-  .ft-status { font-size: 10px; padding: 2px 7px; border-radius: 4px; font-weight: 700; flex-shrink: 0; }
-  .ft-children {
-    margin-left: 20px; padding-left: 14px; border-left: 2px solid var(--green-pale);
-    display: none; flex-direction: column; gap: 0; margin-bottom: 6px;
-  }
-  .ft-children.open { display: flex; }
-  .ft-child-row {
-    display: flex; align-items: center; gap: 8px; padding: 7px 10px;
-    border-radius: var(--radius-sm); border: 1px solid var(--gray-200);
-    background: white; margin-bottom: 5px; cursor: pointer; transition: all 0.2s; position: relative;
-  }
-  .ft-child-row::before { content: ''; position: absolute; left: -16px; top: 50%; width: 14px; height: 1.5px; background: var(--gray-300); }
-  .ft-child-row:hover { border-color: var(--gold); background: var(--gold-pale); }
-  .ft-child-label { flex: 1; font-size: 12px; color: var(--gray-700); }
-  .ft-child-meta { font-size: 10px; color: var(--gray-500); }
 
   .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
   .meta-card { background: white; border-radius: var(--radius); padding: 16px 18px; box-shadow: var(--shadow-sm); }
@@ -462,90 +447,19 @@
       </div>
     </div>
 
-    <div class="task-title-section">
-      <div class="task-title-big">Tổ chức Đại lễ Phật đản</div>
-      <div class="doing-badge"><span>⏳</span> Đang thực hiện</div>
-    </div>
-
-    <div class="file-tree-section">
-      <div class="file-tree-header">📁 Cấu Trúc Công Việc</div>
-      <div class="ft-node">
-        <div class="ft-row parent" onclick="toggleFt('ft1')">
-          <span class="ft-toggle" id="ft1-toggle">▶</span>
-          <span class="ft-icon">📂</span>
-          <span class="ft-label">Sự kiện lớn trong năm</span>
-          <span class="ft-status s-doing">Đang thực hiện</span>
-        </div>
-        <div class="ft-children" id="ft1">
-          <div class="ft-node">
-            <div class="ft-child-row" onclick="toggleFt('ft1-1')" style="font-weight:700; border-left:3px solid var(--gold);">
-              <span class="ft-toggle" id="ft1-1-toggle">▶</span>
-              <span class="ft-icon">📋</span>
-              <span class="ft-child-label">Tổ chức Đại lễ Phật Đản 2026</span>
-              <span class="bc-child-status s-doing">Đang làm</span>
-            </div>
-            <div class="ft-children" id="ft1-1">
-              <div class="ft-child-row">
-                <span class="ft-icon">📝</span>
-                <span class="ft-child-label">Lên danh sách mời khách mời</span>
-                <span class="ft-child-meta">Hạn: 08/05</span>
-                <span class="bc-child-status s-todo">Chưa bắt đầu</span>
-              </div>
-              <div class="ft-child-row">
-                <span class="ft-icon">🌸</span>
-                <span class="ft-child-label">Chuẩn bị lễ vật và hoa cúng</span>
-                <span class="ft-child-meta">Hạn: 05/05</span>
-                <span class="bc-child-status s-done">Hoàn thành</span>
-              </div>
-              <div class="ft-child-row">
-                <span class="ft-icon">🔧</span>
-                <span class="ft-child-label">Bố trí âm thanh, ánh sáng sân lễ</span>
-                <span class="ft-child-meta">Hạn: 07/05</span>
-                <span class="bc-child-status s-doing">Đang làm</span>
-              </div>
-              <div class="ft-child-row">
-                <span class="ft-icon">🎨</span>
-                <span class="ft-child-label">Trang trí khuôn viên và bài trí bàn thờ</span>
-                <span class="ft-child-meta">Hạn: 11/05</span>
-                <span class="bc-child-status s-doing">Đang làm</span>
-              </div>
-              <div class="ft-child-row">
-                <span class="ft-icon">📣</span>
-                <span class="ft-child-label">Phân công nhân sự đón tiếp Phật tử</span>
-                <span class="ft-child-meta">Hạn: 10/05</span>
-                <span class="bc-child-status s-done">Hoàn thành</span>
-              </div>
-            </div>
-          </div>
-          <div class="ft-child-row" style="opacity:0.5;">
-            <span class="ft-icon">🏮</span>
-            <span class="ft-child-label">Tổ chức lễ Vu Lan báo hiếu</span>
-            <span class="bc-child-status s-todo">Chưa bắt đầu</span>
-          </div>
-          <div class="ft-child-row" style="opacity:0.5;">
-            <span class="ft-icon">🙏</span>
-            <span class="ft-child-label">Lễ Thành đạo cuối năm</span>
-            <span class="bc-child-status s-todo">Chưa bắt đầu</span>
-          </div>
-        </div>
-        <div class="ft-row parent" onclick="toggleFt('ft2')">
-          <span class="ft-toggle" id="ft2-toggle">▶</span>
-          <span class="ft-icon">📂</span>
-          <span class="ft-label">Công việc thường nhật</span>
-          <span class="ft-status s-doing">Đang thực hiện</span>
-        </div>
-        <div class="ft-children" id="ft2">
-          <div class="ft-child-row">
-            <span class="ft-icon">📖</span>
-            <span class="ft-child-label">Lịch tụng kinh hàng tuần</span>
-            <span class="bc-child-status s-done">Hoàn thành</span>
-          </div>
-          <div class="ft-child-row">
-            <span class="ft-icon">🧹</span>
-            <span class="ft-child-label">Phân công vệ sinh khuôn viên chùa</span>
-            <span class="bc-child-status s-doing">Đang làm</span>
-          </div>
-        </div>
+    <!-- BREADCRUMB + TIÊU ĐỀ CHUNG 1 CONTAINER -->
+    <div class="task-header-card">
+      <div class="task-breadcrumb">
+        <span class="tbc-icon">📁</span>
+        <span class="tbc-item">Sự kiện lớn trong năm</span>
+        <span class="tbc-sep">›</span>
+        <span class="tbc-current">Tổ chức Đại lễ Phật đản</span>
+        <span class="tbc-sep">›</span>
+        <span class="tbc-child">↳ Danh sách công việc Ban Tri Sự</span>
+      </div>
+      <div class="task-title-row">
+        <div class="task-title-big">Tổ chức Đại lễ Phật đản</div>
+        <div class="doing-badge"><span>⏳</span> Đang thực hiện</div>
       </div>
     </div>
 
@@ -725,7 +639,6 @@
     <div class="atab-content active" id="atab-0">
       <div class="chat-messages">
         <div class="msg-wrap">
-          <!-- Main card: Sư Phụ chỉ dạy -->
           <div class="msg-card">
             <div class="msg-header">
               <div class="msg-avatar av-gold">SP</div>
@@ -751,11 +664,9 @@
               <button class="act-btn" onclick="toggleReply(this)">💬 Phản hồi</button>
             </div>
           </div>
-          <!-- Tree: BTS phản hồi → BTS bạch tiếp -->
           <div class="tree-root">
             <div class="tree-spine"><div class="spine-line"></div></div>
             <div class="tree-branches">
-              <!-- Reply 1: Ban Tri Sự phản hồi -->
               <div class="branch">
                 <div class="branch-connector"><div class="branch-h"></div></div>
                 <div class="branch-content">
@@ -769,7 +680,6 @@
                   </div>
                 </div>
               </div>
-              <!-- Reply 2: Ban Tri Sự bạch Sư Phụ xin chỉ dạy thêm -->
               <div class="branch">
                 <div class="branch-connector"><div class="branch-h"></div></div>
                 <div class="branch-content">
@@ -783,7 +693,6 @@
                   </div>
                 </div>
               </div>
-              <!-- Reply input box -->
               <div class="branch">
                 <div class="branch-connector"><div class="branch-h"></div></div>
                 <div class="branch-content">
@@ -922,7 +831,7 @@
 
   </div>
 
-</div><!-- end main-layout -->
+</div>
 
 <script>
 const LUNAR_TABLE = {
@@ -961,11 +870,6 @@ function toggleLike(btn) {
   if(btn.dataset.liked) { n--; delete btn.dataset.liked; btn.style.color=''; }
   else { n++; btn.dataset.liked='1'; btn.style.color='var(--green-main)'; }
   span.textContent = n;
-}
-function toggleFt(id) {
-  const el = document.getElementById(id);
-  const toggle = document.getElementById(id + '-toggle');
-  if(el) { el.classList.toggle('open'); if(toggle) toggle.classList.toggle('open'); }
 }
 function toggleBcChildren(btn) {
   const children = btn.nextElementSibling;
