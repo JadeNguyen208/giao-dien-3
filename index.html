@@ -497,13 +497,6 @@
     padding: 0; transition: color 0.15s; white-space: nowrap; flex-shrink: 0;
   }
   .subtask-xem-them:hover { color: var(--green-dark); }
-  .subtask-extra { display: none; margin-top: 10px; }
-  .subtask-extra.open { display: block; }
-  .subtask-extra-content {
-    font-size: 14px; line-height: 1.75; color: var(--text-dark); font-weight: 500;
-    padding: 10px 14px; background: var(--gold-pale);
-    border-radius: var(--radius-sm); border-left: 3px solid var(--gold);
-  }
 
   .btn-add-subtask {
     display: flex; align-items: center; gap: 6px;
@@ -683,12 +676,7 @@
               <span class="participant-chip">Nguyễn Thu Hà</span>
               <span class="participant-chip">Trần Văn Bình</span>
               <span class="participant-chip">+ 2 người khác</span>
-            </div><button class="subtask-xem-them" onclick="toggleExtra('ex-1', this)">Xem thêm →</button></div>
-            <div class="subtask-extra" id="ex-1">
-              <div class="subtask-extra-content">
-                <strong>Ghi chú bổ sung:</strong> Đèn lồng khu chánh điện cần bổ sung thêm 12 chiếc — đã liên hệ Ban Cung Ứng, dự kiến có trước 25/3. Băng rôn "Kính Mừng Phật Đản PL.2570" đã in xong, kích thước 2x8m. Bàn thờ phụ tại sân trước cần thêm hoa sen tươi mỗi buổi sáng.
-              </div>
-            </div>
+            </div><button class="subtask-xem-them">Xem thêm →</button></div>
           </div>
         </div>
 
@@ -727,12 +715,7 @@
               <span class="participant-chip">Phan Tuấn Anh</span>
               <span class="participant-chip">Lê Thị Mai</span>
               <span class="participant-chip">Nguyễn Hoàng Sơn</span>
-            </div><button class="subtask-xem-them" onclick="toggleExtra('ex-2', this)">Xem thêm →</button></div>
-            <div class="subtask-extra" id="ex-2">
-              <div class="subtask-extra-content">
-                <strong>Ghi chú bổ sung:</strong> Đang chờ Sư Phụ chỉ dạy về thứ tự nghi lễ và việc cung thỉnh chư Tăng từ tự viện lân cận. Bồn tắm Phật bằng đồng đã được vệ sinh sạch sẽ. Nước hoa và hoa sen sẽ do Ban Cung Ứng cung cấp vào sáng ngày lễ.
-              </div>
-            </div>
+            </div><button class="subtask-xem-them">Xem thêm →</button></div>
           </div>
         </div>
 
@@ -772,12 +755,7 @@
               <span class="participant-chip">Trần Thị Lan</span>
               <span class="participant-chip">Lê Văn Hùng</span>
               <span class="participant-chip">+ 17 người khác</span>
-            </div><button class="subtask-xem-them" onclick="toggleExtra('ex-3', this)">Xem thêm →</button></div>
-            <div class="subtask-extra" id="ex-3">
-              <div class="subtask-extra-content">
-                <strong>Ghi chú bổ sung:</strong> Danh sách 20 người đã gửi qua nhóm Zalo Ban Tri Sự. Ca trưởng: Ca 1 — Trần Thị Lan, Ca 2 — Lê Văn Hùng, Ca 3 — Nguyễn Minh Tú. Trang phục áo lam đồng nhất. Tập huấn ngắn trước lễ lúc 7:00 sáng ngày 8/4/Âm Lịch.
-              </div>
-            </div>
+            </div><button class="subtask-xem-them">Xem thêm →</button></div>
           </div>
         </div>
 
@@ -815,12 +793,7 @@
             <div class="subtask-participants-row"><div class="subtask-participants-chips">
               <span class="participant-chip">Minh Châu (Ban Cung Ứng)</span>
               <span class="participant-chip">Phan Tuấn Anh</span>
-            </div><button class="subtask-xem-them" onclick="toggleExtra('ex-4', this)">Xem thêm →</button></div>
-            <div class="subtask-extra" id="ex-4">
-              <div class="subtask-extra-content">
-                <strong>Ghi chú bổ sung:</strong> Toàn bộ vật phẩm đã kiểm kê và lưu kho phòng hậu cần. Phiếu nhận hàng đã ký xác nhận. Riêng phương tiện đưa đón chư Tăng: 2 xe 16 chỗ, dự kiến xác nhận lịch trước 22/3/Âm Lịch. Quà tặng pháp gồm 200 cuốn kinh nhỏ và 150 tràng hạt.
-              </div>
-            </div>
+            </div><button class="subtask-xem-them">Xem thêm →</button></div>
           </div>
         </div>
 
@@ -859,12 +832,7 @@
               <span class="participant-chip">Nguyễn Văn Kỹ (Ban KT)</span>
               <span class="participant-chip">Trần Minh Tuấn (Ban KT)</span>
               <span class="participant-chip">Lê Hoàng (Ban KT)</span>
-            </div><button class="subtask-xem-them" onclick="toggleExtra('ex-5', this)">Xem thêm →</button></div>
-            <div class="subtask-extra" id="ex-5">
-              <div class="subtask-extra-content">
-                <strong>Ghi chú bổ sung:</strong> Hệ thống âm thanh chánh điện: 4 loa treo + 2 micro không dây Shure. Sân chính: 2 loa cột. Ánh sáng: 8 đèn LED sân khấu + dây đèn trang trí 200m. Máy phát điện dự phòng đã liên hệ thuê — xác nhận trước 24/3/Âm Lịch.
-              </div>
-            </div>
+            </div><button class="subtask-xem-them">Xem thêm →</button></div>
           </div>
         </div>
 
@@ -1393,12 +1361,6 @@ function closeAllDropdowns() {
   document.getElementById('ddOverlay').classList.remove('active');
 }
 
-function toggleExtra(id, btn) {
-  const el = document.getElementById(id);
-  const isOpen = el.classList.contains('open');
-  el.classList.toggle('open');
-  btn.textContent = isOpen ? 'Xem thêm →' : 'Thu gọn ↑';
-}
 
 function toggleSubtaskSection() {
   const body = document.getElementById('subtask-list-body');
